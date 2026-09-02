@@ -1,0 +1,42 @@
+{
+  "document": {"page_size":"A4","title":"Natal Chart","subtitle":"A celestial portrait","author":"Your studio name"},
+  "colors_file": "colors.json",
+  "colors": {"page_background":"backgroundDay","cover_background":"background","box_background":"surfaceDayParchment","alternate_row":"surfaceDayParchmentDeep","primary":"primaryDark","secondary":"primary","gold":"gold","gold_light":"goldLight","text":"textDayPrimary","muted_text":"textDaySecondary","white":"textPrimary"},
+  "welcome": {
+    "title": "Welcome to the Birth Chart",
+    "heading": "What You'll Find Inside",
+    "title_font": "Times-Bold",
+    "body_font": "Helvetica",
+    "intro": "This report is your personal cosmic blueprint - a detailed map of the sky at the exact moment you were born. Think of it as a guidebook to understanding yourself on a deeper level.",
+    "bullets": [
+      "Your birth chart wheel - a visual map of the planets at your birth",
+      "Planet profiles - what each planet means in your specific signs and houses",
+      "House analysis - the 12 life areas and how they play out for you",
+      "Aspect interpretations - how your planets talk to each other",
+      "Life themes - your strengths, challenges, and purpose"
+    ],
+    "closing": "Take your time reading through each section. There's no right or wrong way to explore your chart - just follow what resonates with you."
+  },
+  "chart_page": {
+    "svg_file": "source_files/chart_render.svg",
+    "title": "Birth Chart",
+    "description": "This is a map of the sky at the moment you were born. The outer ring shows the 12 zodiac signs. The symbols inside are planets - placed where they actually were. The lines in the center connect planets that influence each other (aspects). The numbered sections are houses - life areas like career, love, and home."
+  },
+  "profile_pages": {
+    "core_title": "CORE IDENTITY",
+    "core_intro": "Your Sun sign represents your core essence and life purpose, while the Moon reveals your emotional nature and inner needs. The Ascendant shows how you present yourself to the world and how others perceive you. Together, these three form the foundation of your astrological identity.",
+    "sun_callout": "The Sun is the heart of your chart - it represents who you are at your core, your sense of self, and the central theme of your life's journey.",
+    "moon_ascendant_title": "INNER WORLD & OUTER SELF",
+    "moon_callout": "The Moon reveals your emotional nature - how you feel, what you need to feel safe, and the instinctive patterns that run beneath the surface of your personality.",
+    "ascendant_callout": "The Ascendant (Rising Sign) is your front door to the world - it shapes first impressions, your physical appearance, and the instinctive way you approach new situations."
+  },
+  "artwork": {"cover_image":"assets/venastella_cover.png","cover_opacity":1.0,"background_image":"assets/normal_page_background.png","background_opacity":1.0,"section_images":{}},
+  "sections": [
+    {"id":"placements","title":"Planetary Placements","enabled":true},
+    {"id":"interpretations","title":"Your Celestial Story","enabled":true},
+    {"id":"angles","title":"The Four Angles","enabled":true},
+    {"id":"houses","title":"The Houses","enabled":true},
+    {"id":"aspects","title":"Major Aspects","enabled":true},
+    {"id":"technical","title":"Chart Details","enabled":true}
+  ]
+}
