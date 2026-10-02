@@ -1,0 +1,32 @@
+{
+  "T_SQUARE": [
+    "Catalyst",
+    "Friction",
+    "Breakthrough"
+  ],
+  "GRAND_TRINE": [
+    "Talent",
+    "Ease",
+    "Stagnation"
+  ],
+  "STELLIUM": [
+    "Hyper-Focus",
+    "Intensity",
+    "Overdrive"
+  ],
+  "FOCAL_CONFIGURATION": [
+    "Anchor",
+    "Outlet",
+    "Alignment"
+  ],
+  "DOMINANT_ASPECT": [
+    "Core-Theme",
+    "Undercurrent",
+    "Emphasis"
+  ],
+  "SIGNATURE_PAIR": [
+    "Mirror",
+    "Resonance",
+    "Synergy"
+  ]
+}

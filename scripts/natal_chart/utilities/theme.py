@@ -1,0 +1,199 @@
+"""Theme loading, merging, and file resolution."""
+
+from __future__ import annotations
+
+import copy
+import json
+from pathlib import Path
+from typing import Any
+
+DEFAULT_THEME: dict[str, Any] = {
+    "document": {"page_size": "A4", "margin_mm": 17, "title": "Your Natal Chart", "subtitle": "A Celestial Portrait", "author": "Venastella"},
+    "colors_file": "colors.json",
+    "design_system_file": "design_system.json",
+    "pattern_keywords_file": "ameaning_files/pattern_keywords.json",
+    "house_meanings_file": "ameaning_files/natal_houses.json",
+    "colors": {"page_background": "background", "cover_background": "background", "box_background": "surfaceMauve", "alternate_row": "surfaceMauveLighter", "panel_surface": "surfaceLight", "page_title": "goldLightest", "primary": "goldLight", "secondary": "palePurple", "gold": "gold", "gold_light": "goldLight", "gold_pale": "goldPale", "gold_lightest": "goldLightest", "gold_darker": "goldDark", "gold_darkest": "goldDarker", "ornament_gold": "ornamentGold", "text": "goldLightest", "muted_text": "palePurple", "pale_purple": "palePurple", "white": "goldLightest"},
+    "welcome": {
+        "title": "Welcome to the Birth Chart",
+        "heading": "What You'll Find Inside",
+        "intro": "This report is your personal cosmic blueprint - a detailed map of the sky at the exact moment you were born. Think of it as a guidebook to understanding yourself on a deeper level.",
+        "bullets": [
+            "Your birth chart wheel - a visual map of the planets at your birth",
+            "Planet profiles - what each planet means in your specific signs and houses",
+            "House analysis - the 12 life areas and how they play out for you",
+            "Life themes - your strengths, challenges, and purpose"
+        ],
+        "closing": "Take your time reading through each section. There's no right or wrong way to explore your chart - just follow what resonates with you."
+    },
+    "chart_page": {
+        "svg_file": "source_files/chart_render.svg",
+        "title": "Birth Chart",
+        "description": "This is a map of the sky at the moment you were born. The outer ring shows the 12 zodiac signs. The symbols inside are planets - placed where they actually were. The lines in the center connect planets that influence each other (aspects). The numbered sections are houses - life areas like career, love, and home."
+    },
+    "profile_pages": {
+        "core_title": "CORE IDENTITY",
+        "core_intro": "Your Sun sign represents your core essence and life purpose, while the Moon reveals your emotional nature and inner needs. The Ascendant shows how you present yourself to the world and how others perceive you. Together, these three form the foundation of your astrological identity.",
+        "sun_callout": "The Sun is the heart of your chart - it represents who you are at your core, your sense of self, and the central theme of your life's journey.",
+        "moon_ascendant_title": "INNER WORLD & OUTER SELF",
+        "moon_callout": "The Moon reveals your emotional nature - how you feel, what you need to feel safe, and the instinctive patterns that run beneath the surface of your personality.",
+        "ascendant_callout": "The Ascendant (Rising Sign) is your front door to the world - it shapes first impressions, your physical appearance, and the instinctive way you approach new situations.",
+        "midheaven_intro": "The Midheaven (MC) sits at the very top of one's chart - it represents one's public image, career path, and the legacy one is building in the world."
+    },
+    "personal_planets": {
+        "title": "PERSONAL PLANETS",
+        "overview": "The personal planets - Mercury, Venus, and Mars - describe how one thinks, loves, and acts. These celestial bodies move quickly through the zodiac and give one's chart its unique personal flavor.",
+        "mercury_intro": "Mercury governs how one's mind works - the way one thinks, learns, communicates, and processes information. It shapes one's intellectual style and how one expresses one's ideas.",
+        "venus_intro": "Venus describes what one loves and how one loves - one's taste, one's values, one's approach to relationships, and what brings one pleasure and a sense of beauty.",
+        "mars_intro": "Mars is one's engine - it shows how one asserts oneself, pursues what one wants, handles conflict, and channels one's physical energy and ambition."
+    },
+    "social_planets": {
+        "title": "SOCIAL PLANETS",
+        "jupiter_intro": "Jupiter points to where life feels generous and expansive - one's sense of meaning, one's philosophical outlook, and the areas where growth and opportunity come naturally.",
+        "saturn_intro": "Saturn represents one's biggest lessons - the areas where life demands discipline, patience, and hard-won mastery. It's where one builds lasting strength through effort."
+    },
+    "generational_points": {
+        "title": "GENERATIONAL & TRANSPERSONAL",
+        "north_node_intro": "The North Node points to one's soul's growth direction - the qualities one is here to develop in this lifetime, even if they feel unfamiliar or challenging at first.",
+        "lilith_intro": "Black Moon Lilith reveals one's untamed instincts, suppressed desires, and the wild power one must integrate rather than deny. It shows where one refuses to compromise one's authenticity."
+    },
+    "additional_points": {
+        "healing_relationships": {"title": "HEALING & RELATIONSHIPS"},
+        "roots_change": {"title": "ROOTS & CHANGE"},
+        "outer_planets": {"title": "TRANSPERSONAL PLANETS"},
+        "chiron": {"life_area": "Vulnerability & Healing", "intro": "Chiron represents your deeper sensitivities - the areas where you may feel vulnerable or unsure of yourself. It explores how understanding these feelings can help you develop self-compassion and support others with similar struggles.", "icon": "sprig"},
+        "descendant": {"life_area": "Relationships & Partnership", "intro": "The Descendant describes what you seek in close relationships and the qualities you are drawn to in others. It reveals how you approach partnership, cooperation, and the balance between your needs and someone else's.", "icon": "rings"},
+        "imum_coeli": {"title": "Imum Coeli (IC)", "life_area": "Home & Emotional Roots", "intro": "The Imum Coeli represents your roots, private life, and sense of belonging. It explores your relationship with home and family, the foundations shaped by your early life, and what helps you feel emotionally secure.", "icon": "house"},
+        "uranus": {"life_area": "Freedom & Change", "intro": "Uranus represents independence, originality, and the desire to do things differently. It shows where you question expectations, need freedom, and seek change when familiar ways of living feel too restrictive.", "icon": "lightning"},
+        "neptune": {"life_area": "Dreams & Imagination", "intro": "Neptune represents imagination, intuition, and the longing for something beyond everyday life. It describes your dreams and ideals, while also showing where wishful thinking can make it difficult to see a situation clearly.", "icon": "wave_star"},
+        "pluto": {"life_area": "Power & Transformation", "intro": "Pluto represents deep change and your relationship with power and control. It explores where you hold on tightly, what you find difficult to let go of, and how you rebuild when familiar patterns no longer serve you.", "icon": "butterfly"}
+    },
+    "house_pages": {
+        "title": "THE TWELVE HOUSES",
+        "intro": "The twelve houses of one's chart represent different life areas where planetary energies manifest. Each house governs specific themes and experiences in one's life journey."
+    },
+    "house_cusps_page": {
+      "title": "House Cusps",
+      "paragraphs": [
+        "The twelve houses of your birth chart represent different areas of life, from identity and relationships to home, work and personal growth. A house cusp is the point where a house begins, marked by a zodiac sign and degree.",
+        "In astrology, the sign on each cusp describes how you approach that area of life. These positions help connect your chart\u2019s wider themes to everyday experiences, even in houses that contain no planets."
+      ]
+    },
+    "positions_page": {
+      "title": "Planetary Positions",
+      "paragraphs": [
+        "Your planetary positions record where the Sun, Moon and planets were at the moment of your birth. In astrology, each represents a different part of your inner world, from identity and emotions to communication, relationships and motivation.",
+        "The zodiac sign describes how those themes are expressed, while the house shows the area of life in which they unfold. Together, these placements form the foundation of your chart and the interpretations throughout this report."
+      ]
+    },
+    "patterns_page": {
+      "title": "Aspect Patterns",
+      "subtitle": "The larger stories within your chart",
+      "paragraphs": [
+        "Individual aspects describe connections between two planets. Aspect patterns form when several of these connections join together into a recognisable shape, revealing a larger story within your birth chart.",
+        "In astrology, these patterns highlight how different parts of you work together: where energy flows naturally, where competing needs create tension, and where you can develop greater balance. Understanding the whole pattern helps you recognise recurring themes and approach them with more awareness and choice."
+      ]
+    },
+    "aspects_intro": {
+      "title": "Aspects",
+      "paragraphs": [
+        "Aspects are the angles formed between the planets at the moment you were born. They show how different parts of your personality interact—where your energies flow naturally, where they challenge one another, and where growth may take place.",
+        "Some aspects create ease, confidence and natural talents, while others produce tension that encourages change and self-awareness. Neither is simply “good” or “bad.” Together, they reveal the inner relationships that make your birth chart uniquely yours.",
+        "Aspects are important because a planet never acts entirely alone. Understanding the connections between your planets adds depth to the chart, showing not only the qualities you carry, but how those qualities work together in your thoughts, emotions, relationships and choices."
+      ]
+    },
+    "aggregate_page": {
+        "title": "YOUR COSMIC MAKEUP",
+        "dominant_planet_title": "Dominant Planet",
+        "element_balance_title": "Element Balance",
+        "modality_balance_title": "Modal Balance",
+        "hemisphere_balance_title": "Hemisphere Balance"
+    },
+    "layout": {"show_ornaments": True},
+    "artwork": {"cover_image": "assets/front_page_background.png", "cover_opacity": 1.0, "background_image": "assets/general_page_background.png", "background_opacity": 1.0, "section_images": {}},
+    "labels": {"retrograde": "Rx", "direct": "Direct", "unknown": "-", "generated_for": "Prepared for", "page": "Page"},
+}
+
+
+def deep_merge(base: dict[str, Any], override: dict[str, Any]) -> dict[str, Any]:
+    result = copy.deepcopy(base)
+    for key, value in override.items():
+        result[key] = deep_merge(result[key], value) if isinstance(value, dict) and isinstance(result.get(key), dict) else copy.deepcopy(value)
+    return result
+
+
+def _resolve_path(value: str | Path, config_dir: Path, project_root: Path) -> Path:
+    path = Path(value).expanduser()
+    if path.is_absolute():
+        return path
+    config_candidate = config_dir / path
+    return config_candidate if config_candidate.exists() else project_root / path
+
+
+def load_theme(theme_path: Path | None, project_root: Path) -> dict[str, Any]:
+    override: dict[str, Any] = {}
+    config_dir = project_root
+    if theme_path:
+        theme_path = theme_path.expanduser().resolve()
+        config_dir = theme_path.parent
+        with theme_path.open(encoding="utf-8") as stream:
+            override = json.load(stream)
+
+    theme = deep_merge(DEFAULT_THEME, override)
+    design_system_path = _resolve_path(theme["design_system_file"], config_dir, project_root)
+    with design_system_path.open(encoding="utf-8") as stream:
+        theme["design_system"] = json.load(stream)
+    palette_path = _resolve_path(theme["colors_file"], config_dir, project_root)
+    with palette_path.open(encoding="utf-8") as stream:
+        palette = json.load(stream)
+    for role, token in theme["colors"].items():
+        value = palette.get(token, token)
+        if not isinstance(value, str) or not value.startswith("#"):
+            raise ValueError(f"Color role {role!r} must resolve to a hex color; got {value!r}")
+        theme["colors"][role] = value
+
+    keywords_path = _resolve_path(theme["pattern_keywords_file"], config_dir, project_root)
+    with keywords_path.open(encoding="utf-8") as stream:
+        keywords = json.load(stream)
+    if not isinstance(keywords, dict) or any(
+        not isinstance(words, list) or len(words) != 3
+        or any(not isinstance(word, str) or not word.strip() for word in words)
+        for words in keywords.values()
+    ):
+        raise ValueError("Pattern keywords must map each type to three non-empty strings")
+    theme["pattern_keywords"] = keywords
+
+    house_meanings_path = _resolve_path(theme["house_meanings_file"], config_dir, project_root)
+    with house_meanings_path.open(encoding="utf-8") as stream:
+        house_meanings_document = json.load(stream)
+    house_meanings = house_meanings_document.get("houses")
+    expected_house_keys = {
+        "first_house", "second_house", "third_house", "fourth_house",
+        "fifth_house", "sixth_house", "seventh_house", "eighth_house",
+        "ninth_house", "tenth_house", "eleventh_house", "twelfth_house",
+    }
+    if not isinstance(house_meanings, dict) or set(house_meanings) != expected_house_keys:
+        raise ValueError(
+            f"House meanings file must contain exactly the twelve house keys; got "
+            f"{sorted(house_meanings) if isinstance(house_meanings, dict) else type(house_meanings).__name__}"
+        )
+    theme["house_meanings"] = house_meanings
+    theme["house_meanings_metadata"] = {
+        key: value for key, value in house_meanings_document.items() if key != "houses"
+    }
+
+    theme["_config_dir"] = str(config_dir)
+    theme["_project_root"] = str(project_root)
+    return theme
+
+
+def resolve_artwork(theme: dict[str, Any], value: str | None) -> Path | None:
+    if not value:
+        return None
+    path = _resolve_path(value, Path(theme["_config_dir"]), Path(theme["_project_root"]))
+    return path if path.exists() else None
+
+
+def dump_default_theme(destination: Path) -> None:
+    destination.parent.mkdir(parents=True, exist_ok=True)
+    destination.write_text(json.dumps(DEFAULT_THEME, indent=2) + "\n", encoding="utf-8")

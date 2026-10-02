@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "title": "The Twelve Astrological Houses",
+  "description": "Reusable meanings for the twelve houses in a natal chart. These meanings describe the life area governed by each house and are independent of the zodiac sign on the cusp.",
+  "interpretation_note": "Use each universal house meaning together with the cusp sign, planets occupying the house, aspects, and the rest of the chart. Astrology is a reflective symbolic framework, not a prediction or guarantee.",
+  "houses": {
+    "first_house": {
+      "number": 1,
+      "title": "First House - Self and Identity",
+      "short_title": "House of Self",
+      "life_area": "Identity, appearance, self-expression, beginnings, and the way you meet life.",
+      "keywords": ["identity", "appearance", "approach", "beginnings", "self-expression"],
+      "description": "The First House describes how you enter the world and how others first experience you. It reflects your instinctive approach to new situations, your visible manner, and the developing sense of self through which the rest of the chart is expressed."
+    },
+    "second_house": {
+      "number": 2,
+      "title": "Second House - Values and Resources",
+      "short_title": "House of Values",
+      "life_area": "Money, possessions, personal resources, values, self-worth, and material security.",
+      "keywords": ["values", "income", "possessions", "resources", "self-worth"],
+      "description": "The Second House explores what you value and what helps you feel secure. It describes your relationship with money and possessions, the skills and resources you can rely on, and the inner sense of worth that shapes how you build stability."
+    },
+    "third_house": {
+      "number": 3,
+      "title": "Third House - Communication and Learning",
+      "short_title": "House of Communication",
+      "life_area": "Communication, everyday learning, siblings, neighbours, short journeys, and your immediate environment.",
+      "keywords": ["communication", "learning", "siblings", "local environment", "curiosity"],
+      "description": "The Third House describes how you gather, organise, and exchange everyday information. It relates to your communication style, early learning, siblings and peers, local surroundings, and the curiosity that connects one experience to the next."
+    },
+    "fourth_house": {
+      "number": 4,
+      "title": "Fourth House - Home and Roots",
+      "short_title": "House of Home",
+      "life_area": "Home, family, ancestry, privacy, belonging, and emotional foundations.",
+      "keywords": ["home", "family", "roots", "privacy", "belonging"],
+      "description": "The Fourth House represents your private foundation. It speaks to home, family and ancestry, the conditions that help you feel safe, and the inner base you return to when the outer world becomes demanding."
+    },
+    "fifth_house": {
+      "number": 5,
+      "title": "Fifth House - Creativity and Joy",
+      "short_title": "House of Creativity",
+      "life_area": "Creativity, pleasure, play, romance, children, and heartfelt self-expression.",
+      "keywords": ["creativity", "romance", "play", "pleasure", "self-expression"],
+      "description": "The Fifth House is the realm of creative vitality and personal joy. It describes how you play, take expressive risks, enjoy romance, relate to children, and make something uniquely your own simply because it feels alive."
+    },
+    "sixth_house": {
+      "number": 6,
+      "title": "Sixth House - Daily Life and Wellbeing",
+      "short_title": "House of Daily Practice",
+      "life_area": "Daily routines, work, service, wellbeing, practical skills, and responsibilities.",
+      "keywords": ["routine", "work", "service", "wellbeing", "craft"],
+      "description": "The Sixth House concerns the practices that sustain everyday life. It describes work habits, service, practical responsibilities, skill development, and the routines through which you care for your body and make your efforts useful."
+    },
+    "seventh_house": {
+      "number": 7,
+      "title": "Seventh House - Partnership",
+      "short_title": "House of Partnership",
+      "life_area": "Committed relationships, cooperation, agreements, equality, and one-to-one encounters.",
+      "keywords": ["partnership", "commitment", "cooperation", "contracts", "balance"],
+      "description": "The Seventh House describes how you meet others as equals. It relates to close partnership, commitment, cooperation and agreements, while revealing the qualities you seek, admire, negotiate with, or discover through another person."
+    },
+    "eighth_house": {
+      "number": 8,
+      "title": "Eighth House - Intimacy and Transformation",
+      "short_title": "House of Transformation",
+      "life_area": "Intimacy, trust, shared resources, psychological depth, endings, and renewal.",
+      "keywords": ["intimacy", "trust", "shared resources", "transformation", "renewal"],
+      "description": "The Eighth House explores what is shared, hidden, or changed through deep involvement. It concerns intimacy and trust, shared finances and obligations, psychological insight, and the process of releasing an old form so that renewal can begin."
+    },
+    "ninth_house": {
+      "number": 9,
+      "title": "Ninth House - Meaning and Exploration",
+      "short_title": "House of Meaning",
+      "life_area": "Beliefs, higher learning, philosophy, travel, teaching, and the search for meaning.",
+      "keywords": ["beliefs", "higher learning", "travel", "philosophy", "perspective"],
+      "description": "The Ninth House expands the horizon of the mind. It describes higher education, travel and cultural exchange, philosophy and belief, and the experiences through which you form a larger understanding of life and your place within it."
+    },
+    "tenth_house": {
+      "number": 10,
+      "title": "Tenth House - Vocation and Public Life",
+      "short_title": "House of Vocation",
+      "life_area": "Career, vocation, reputation, responsibility, achievement, and public contribution.",
+      "keywords": ["career", "vocation", "reputation", "achievement", "responsibility"],
+      "description": "The Tenth House represents your visible contribution and the direction of mature ambition. It speaks to vocation, reputation, responsibility and achievement, and to the role you gradually build in the wider world."
+    },
+    "eleventh_house": {
+      "number": 11,
+      "title": "Eleventh House - Community and Vision",
+      "short_title": "House of Community",
+      "life_area": "Friendship, networks, community, collective causes, future hopes, and shared visions.",
+      "keywords": ["friendship", "community", "networks", "causes", "future"],
+      "description": "The Eleventh House connects personal life with the wider group. It describes friendship, networks and communities, participation in shared causes, and the future-oriented hopes that grow when people imagine and create together."
+    },
+    "twelfth_house": {
+      "number": 12,
+      "title": "Twelfth House - Inner Life and Release",
+      "short_title": "House of the Inner World",
+      "life_area": "Solitude, spirituality, dreams, compassion, healing, retreat, and unconscious patterns.",
+      "keywords": ["inner life", "solitude", "dreams", "compassion", "release"],
+      "description": "The Twelfth House describes the quieter territory beneath ordinary awareness. It relates to solitude, dreams, spirituality and compassion, as well as patterns that need reflection, healing, or release before a new cycle begins."
+    }
+  }
+}
