@@ -1,160 +1,148 @@
 {
   "success": true,
-  "message": "Birth chart retrieved for Elena Gomez",
+  "message": "Personalized natal chart generated",
   "data": {
-    "id": 3,
-    "userId": 3,
-    "user": {
-      "name": "Elena Gomez",
-      "birthDate": "1990-06-16",
-      "birthTime": "11:11:00",
-      "birthCity": "Austin",
-      "birthCountryCode": "US"
-    },
-    "sunSign": "Gemini",
-    "moonSign": "Aries",
-    "ascendantSign": "Leo",
     "fullApiResponse": {
       "subject_data": {
-        "name": "Elena Gomez",
-        "year": 1990,
-        "month": 6,
-        "day": 16,
-        "hour": 11,
-        "minute": 11,
-        "city": "Austin",
-        "nation": "US",
-        "lng": -97.74306,
-        "lat": 30.26715,
-        "tz_str": "America/Chicago",
+        "name": "Dimi Deneva",
+        "year": 1992,
+        "month": 11,
+        "day": 12,
+        "hour": 20,
+        "minute": 20,
+        "city": "Kazanlak",
+        "nation": "BG",
+        "lng": 25.4,
+        "lat": 42.61667,
+        "tz_str": "Europe/Sofia",
         "zodiac_type": "Tropic",
         "sidereal_mode": null,
         "houses_system_identifier": "P",
         "houses_system_name": "Placidus",
         "perspective_type": "Apparent Geocentric",
-        "iso_formatted_local_datetime": "1990-06-16T11:11:11-05:00",
-        "iso_formatted_utc_datetime": "1990-06-16T16:11:11+00:00",
-        "julian_day": 2448059.1744328705,
-        "utc_time": 16.18638888888889,
-        "local_time": 11.186388888888889,
+        "iso_formatted_local_datetime": "1992-11-12T20:20:00+02:00",
+        "iso_formatted_utc_datetime": "1992-11-12T18:20:00+00:00",
+        "julian_day": 2448939.263888889,
+        "utc_time": 18.333333333333332,
+        "local_time": 20.333333333333332,
         "sun": {
           "name": "Sun",
+          "quality": "Fixed",
+          "element": "Water",
+          "sign": "Sco",
+          "sign_num": 7,
+          "position": 20.625716487601238,
+          "abs_pos": 230.62571648760124,
+          "emoji": "♏️",
+          "point_type": "Planet",
+          "house": "Fifth_House",
+          "retrograde": false,
+          "life_area": "Identity, purpose, self-expression, and vitality.",
+          "description": "The Sun is the heart of your chart — the part of you that wants to live deliberately and express something unmistakably your own. It describes your sense of identity, the qualities you take pride in, and what gives your life purpose. Its sign colours how you shine, while its house shows where you seek a meaningful place in the world.",
+          "sign_meaning": "You want to live beneath the surface, where motives are honest and experiences mean something. Your intensity supports commitment and reinvention. Strength grows when you can stay open without needing to know or control everything.",
+          "house_meaning": "You express identity through creativity, play, and the pleasure of making something personal visible. Joy gives your life direction. Keep a little space for expression that does not need to be admired, useful, or excellent."
+        },
+        "moon": {
+          "name": "Moon",
           "quality": "Mutable",
           "element": "Air",
           "sign": "Gem",
           "sign_num": 2,
-          "position": 25.25120845404588,
-          "abs_pos": 85.25120845404588,
+          "position": 19.809865531070187,
+          "abs_pos": 79.80986553107019,
           "emoji": "♊️",
           "point_type": "Planet",
-          "house": "Eleventh_House",
-          "retrograde": false,
-          "life_area": "Identity, purpose, self-expression, and vitality.",
-          "description": "The Sun is the heart of your chart — the part of you that wants to live deliberately and express something unmistakably your own. It describes your sense of identity, the qualities you take pride in, and what gives your life purpose. Its sign colours how you shine, while its house shows where you seek a meaningful place in the world.",
-          "sign_meaning": "Your identity stays alive through curiosity, conversation, and the freedom to explore more than one version of yourself. You make connections others miss; choosing what deserves deeper attention gives your versatility substance.",
-          "house_meaning": "You express identity through friendship, community, and hopes that reach beyond your individual life. Participation gives your ideas a wider purpose. Keep your personal voice present within the collective vision you want to support."
-        },
-        "moon": {
-          "name": "Moon",
-          "quality": "Cardinal",
-          "element": "Fire",
-          "sign": "Ari",
-          "sign_num": 0,
-          "position": 1.3057274648367134,
-          "abs_pos": 1.3057274648367134,
-          "emoji": "♈️",
-          "point_type": "Planet",
-          "house": "Eighth_House",
+          "house": "Twelfth_House",
           "retrograde": false,
           "life_area": "Emotions, instincts, comfort, and inner needs.",
           "description": "The Moon describes your inner weather — the feelings, habits, and instinctive responses that emerge before you have time to explain them. It reveals what helps you feel safe, how you seek comfort, and the care you need when your guard comes down. Its placement brings your emotional rhythms and private needs into focus.",
-          "sign_meaning": "Your feelings arrive quickly and want somewhere to go. Direct expression and room to act help you recover your balance; a pause between the first spark and your response keeps a passing mood from choosing your next move.",
-          "house_meaning": "Emotional closeness asks for trust deep enough to hold what you do not share casually. You seek sincerity beneath reassuring words. Let consistency build safety so intimacy does not need to be tested through intensity."
+          "sign_meaning": "You reach for words when feelings become complicated. Conversation, humour, and a change of perspective help you process experience. Sometimes the feeling needs to be felt before it can become an interesting explanation.",
+          "house_meaning": "Your feelings need quiet before they become fully clear to you. Solitude, music, or private reflection can give them shape. Let trusted people into that inner world occasionally so privacy does not become carrying everything alone."
         },
         "mercury": {
           "name": "Mercury",
           "quality": "Mutable",
-          "element": "Air",
-          "sign": "Gem",
-          "sign_num": 2,
-          "position": 7.737414382645952,
-          "abs_pos": 67.73741438264595,
-          "emoji": "♊️",
+          "element": "Fire",
+          "sign": "Sag",
+          "sign_num": 8,
+          "position": 8.239382123187937,
+          "abs_pos": 248.23938212318794,
+          "emoji": "♐️",
           "point_type": "Planet",
-          "house": "Tenth_House",
-          "retrograde": false,
+          "house": "Fifth_House",
+          "retrograde": true,
           "life_area": "Thinking, communication, learning, and understanding.",
           "description": "Mercury is the storyteller and questioner in your chart. It describes how you gather information, make connections, and translate what is happening inside you into words. Its placement reveals your approach to learning and conversation — from the details that catch your attention to the way you make an idea understandable to someone else.",
-          "sign_meaning": "Your mind thrives on questions, wordplay, and connections between apparently unrelated things. Conversation is a way of discovering what you think. Following one thread beyond its first fascination gives your quick intelligence room to deepen.",
-          "house_meaning": "Your ideas and communication have a visible role in your public contribution. Explaining, planning, or sharing knowledge can help you find direction. Speak clearly enough that competence does not have to announce itself through complexity."
+          "sign_meaning": "You think in broad patterns and speak with enthusiasm about what an idea could mean. Your gift is helping people see beyond the immediate problem. Checking the small facts gives your larger vision something solid to stand on.",
+          "house_meaning": "You enjoy giving ideas a creative form through stories, games, humour, or expressive projects. Play makes your thinking more inventive. Let curiosity enjoy the process before asking whether the result is clever enough to show."
         },
         "venus": {
           "name": "Venus",
-          "quality": "Fixed",
-          "element": "Earth",
-          "sign": "Tau",
-          "sign_num": 1,
-          "position": 20.159356081481874,
-          "abs_pos": 50.159356081481874,
-          "emoji": "♉️",
+          "quality": "Mutable",
+          "element": "Fire",
+          "sign": "Sag",
+          "sign_num": 8,
+          "position": 29.074653606713753,
+          "abs_pos": 269.07465360671375,
+          "emoji": "♐️",
           "point_type": "Planet",
-          "house": "Ninth_House",
+          "house": "Sixth_House",
           "retrograde": false,
           "life_area": "Love, beauty, pleasure, and personal values.",
           "description": "Venus describes what draws you closer — to a person, a beautiful place, or something you simply love doing. It reveals how you express affection, receive love, and recognise what feels worth cherishing. Its placement brings your tastes, relationship values, and sources of pleasure into focus.",
-          "sign_meaning": "You love through presence, loyalty, and pleasures that can be touched, tasted, or shared slowly. Consistency makes affection believable. Keep choosing the person as they change, rather than loving only the comfort of what has become familiar.",
-          "house_meaning": "You find beauty in unfamiliar perspectives, cultural experiences, and ideas that widen your world. Shared discovery can become a form of affection. Stay curious about the person as well as the horizon they seem to open."
+          "sign_meaning": "You are drawn to the person who opens a window in your world. Humour, honesty, and shared discovery keep affection alive. Commitment works best when it protects room to grow while making your intentions dependable.",
+          "house_meaning": "You show affection through the helpful detail and the effort that makes daily life kinder. Practical care is one of your love languages. Make space to receive pleasure as well as provide support, so devotion does not become a list of tasks."
         },
         "mars": {
           "name": "Mars",
           "quality": "Cardinal",
-          "element": "Fire",
-          "sign": "Ari",
-          "sign_num": 0,
-          "position": 11.884877535308858,
-          "abs_pos": 11.884877535308858,
-          "emoji": "♈️",
+          "element": "Water",
+          "sign": "Can",
+          "sign_num": 3,
+          "position": 25.94355205119956,
+          "abs_pos": 115.94355205119956,
+          "emoji": "♋️",
           "point_type": "Planet",
-          "house": "Eighth_House",
+          "house": "First_House",
           "retrograde": false,
           "life_area": "Action, desire, assertion, and the use of energy.",
           "description": "Mars is the part of your chart that turns wanting into doing. It describes how you pursue a goal, assert a need, express desire, and respond when something stands in your way. Its placement reveals what sets your energy in motion and how you handle the heat of effort, attraction, and conflict.",
-          "sign_meaning": "You act decisively when something catches your fire. A challenge brings your energy into focus, and starting rarely requires much persuasion. Choosing a direction worth returning to helps your courage survive the first rush of excitement.",
-          "house_meaning": "You invest energy in shared commitments, intimate questions, and matters that resist a superficial answer. Focus is a strength. Clear agreements help you act decisively without taking over something that belongs to more than one person."
+          "sign_meaning": "You act most strongly when something you care about needs protection. Feeling connected to a goal gives your effort force. Stating your frustration directly helps your energy find a useful outlet instead of travelling through hints and withdrawal.",
+          "house_meaning": "You put energy into direct action and making your presence count. Starting something gives your drive a clear outlet. Choose when to push and when to pause so that initiative remains a strength rather than a constant state of readiness."
         },
         "jupiter": {
           "name": "Jupiter",
           "quality": "Cardinal",
-          "element": "Water",
-          "sign": "Can",
-          "sign_num": 3,
-          "position": 16.144247153646674,
-          "abs_pos": 106.14424715364667,
-          "emoji": "♋️",
+          "element": "Air",
+          "sign": "Lib",
+          "sign_num": 6,
+          "position": 6.6172102377183535,
+          "abs_pos": 186.61721023771835,
+          "emoji": "♎️",
           "point_type": "Planet",
-          "house": "Eleventh_House",
+          "house": "Fourth_House",
           "retrograde": false,
           "life_area": "Growth, opportunity, generosity, and the search for meaning.",
           "description": "Jupiter opens the window to a wider world. It describes where you look for possibility, what encourages your confidence, and how you seek meaning through experience. Its placement explores your relationship with learning, generosity, and belief, including the balance between an expansive vision and the practical limits that give it shape.",
-          "sign_meaning": "You find opportunity through care, belonging, and the creation of a supportive environment. Generosity feels meaningful when it helps someone feel safe enough to grow. Include yourself among the people whose needs deserve attention.",
-          "house_meaning": "You grow through friendship, community, and participation in shared hopes. Other people's perspectives reveal possibilities you would not discover alone. Contribute something concrete so optimism becomes a resource the group can use."
+          "sign_meaning": "You grow through cooperation, cultural exchange, and encounters that widen your understanding of fairness. The right conversation can reveal an opportunity you could not see alone. Choose partnerships that welcome your judgement as well as your agreement.",
+          "house_meaning": "You grow through the private foundations that let you feel supported. Home, family stories, or a chosen sense of belonging can widen your understanding. Build a refuge with room for development instead of expecting security to prevent change."
         },
         "saturn": {
           "name": "Saturn",
-          "quality": "Cardinal",
-          "element": "Earth",
-          "sign": "Cap",
-          "sign_num": 9,
-          "position": 23.962401714122052,
-          "abs_pos": 293.96240171412205,
-          "emoji": "♑️",
+          "quality": "Fixed",
+          "element": "Air",
+          "sign": "Aqu",
+          "sign_num": 10,
+          "position": 12.464900022348615,
+          "abs_pos": 312.4649000223486,
+          "emoji": "♒️",
           "point_type": "Planet",
-          "house": "Fifth_House",
-          "retrograde": true,
+          "house": "Eighth_House",
+          "retrograde": false,
           "life_area": "Responsibility, limits, discipline, and lasting achievement.",
           "description": "Saturn is the builder in your chart — the part concerned with what can stand the test of time. It describes how you meet responsibility, work within limits, and develop trust in your own abilities through practice. Its placement shows where patience and commitment matter, and where high standards need to leave room for being human.",
-          "sign_meaning": "You understand the weight of responsibility and the value of work that stands up over time. Authority develops through competence and integrity. Choose obligations deliberately so achievement does not become an endless requirement to prove yourself.",
-          "house_meaning": "You approach creative expression with care and a wish to do it well. Commitment can turn a talent into a craft. Make room for play that has no standard to meet, so joy does not become another performance review."
+          "sign_meaning": "You are learning how individuality can contribute to something larger without being lost in it. Structure helps original ideas become workable. Responsibility to a community still leaves room to question the rules it has inherited.",
+          "house_meaning": "You take shared obligations and emotional vulnerability seriously. Careful agreements can make trust more possible. Build reassurance through dependable action rather than trying to eliminate every uncertainty before allowing closeness."
         },
         "uranus": {
           "name": "Uranus",
@@ -162,16 +150,16 @@
           "element": "Earth",
           "sign": "Cap",
           "sign_num": 9,
-          "position": 8.119358103048853,
-          "abs_pos": 278.11935810304885,
+          "position": 15.109903998869697,
+          "abs_pos": 285.1099039988697,
           "emoji": "♑️",
           "point_type": "Planet",
-          "house": "Fifth_House",
-          "retrograde": true,
+          "house": "Seventh_House",
+          "retrograde": false,
           "life_area": "Freedom, originality, reinvention, and change.",
           "description": "Uranus describes the impulse to question the familiar and imagine another way. It brings independence, experimentation, and the need for room to be yourself into the chart. Its slow passage through each sign connects whole generations through themes of change; its house and aspects show where those themes meet your own need for freedom and renewal.",
           "sign_meaning": "Your generation questions institutions, hierarchies, and the structures that define success. Original thinking looks for a way to make established systems work differently. The challenge is turning criticism into an alternative sturdy enough to use.",
-          "house_meaning": "You bring experimentation to creativity, play, and romance. Unusual interests keep your imagination awake. Make your intentions clear in shared experiences so freedom feels inviting rather than unpredictable to someone else."
+          "house_meaning": "You need a partnership that respects individuality and leaves room to question the usual script. Friendship can be a strong foundation. Clear agreements let independence coexist with emotional reliability instead of making commitment feel restrictive by definition."
         },
         "neptune": {
           "name": "Neptune",
@@ -179,16 +167,16 @@
           "element": "Earth",
           "sign": "Cap",
           "sign_num": 9,
-          "position": 13.687565217080362,
-          "abs_pos": 283.68756521708036,
+          "position": 16.756587331837068,
+          "abs_pos": 286.75658733183707,
           "emoji": "♑️",
           "point_type": "Planet",
-          "house": "Fifth_House",
-          "retrograde": true,
+          "house": "Seventh_House",
+          "retrograde": false,
           "life_area": "Imagination, dreams, compassion, and spiritual longing.",
           "description": "Neptune gives the chart its dreams — the images, ideals, and longings that make life feel larger than its practical details. It describes imagination, compassion, and the search for a connection that reaches beyond words, alongside the temptation to fall in love with a possibility. Its sign carries generational themes, while its house and aspects bring inspiration and discernment into personal focus.",
           "sign_meaning": "Your generation invests dreams in achievement, institutions, and the promise of building something significant. Inspiration seeks a lasting form. The challenge is recognising when an image of success has become more compelling than the life behind it.",
-          "house_meaning": "Imagination flows into art, romance, and the experiences that make life feel enchanted. Inspiration is part of pleasure for you. Enjoy the dream while staying curious about the real person or practical craft that gives it form."
+          "house_meaning": "You bring tenderness and a powerful imagination to partnership. The possibility of a connection can be deeply moving. Let the real person's actions matter as much as the story you can picture around them."
         },
         "pluto": {
           "name": "Pluto",
@@ -196,389 +184,389 @@
           "element": "Water",
           "sign": "Sco",
           "sign_num": 7,
-          "position": 15.378114512199176,
-          "abs_pos": 225.37811451219918,
+          "position": 22.777779837546717,
+          "abs_pos": 232.77777983754672,
           "emoji": "♏️",
           "point_type": "Planet",
-          "house": "Third_House",
-          "retrograde": true,
+          "house": "Fifth_House",
+          "retrograde": false,
           "life_area": "Transformation, power, depth, and renewal.",
           "description": "Pluto draws attention beneath the surface, towards the attachments, motives, and questions of power that shape meaningful change. It describes the process of examining what has become deeply rooted and deciding what can be carried forward. Its sign speaks to broad generational themes; its house and aspects locate more personal encounters with agency, trust, and renewal.",
           "sign_meaning": "Your generation confronts secrecy, intimacy, and the forces people prefer not to discuss openly. Depth and psychological investigation are central themes. The challenge is using insight to understand power without becoming fascinated by control itself.",
-          "house_meaning": "Words and information have weight for you. You are drawn to the deeper explanation and to understanding who gets to shape a story. Use that concentration to open a conversation rather than make your conclusion impossible to question."
+          "house_meaning": "Creative expression and attraction engage you deeply. You want a personal experience with enough substance to absorb your attention. Leave room for lightness so pleasure does not need to become consuming before it feels significant."
         },
         "ascendant": {
           "name": "Ascendant",
-          "quality": "Fixed",
-          "element": "Fire",
-          "sign": "Leo",
-          "sign_num": 4,
-          "position": 25.255308056735544,
-          "abs_pos": 145.25530805673554,
-          "emoji": "♌️",
+          "quality": "Cardinal",
+          "element": "Water",
+          "sign": "Can",
+          "sign_num": 3,
+          "position": 13.971201999211985,
+          "abs_pos": 103.97120199921198,
+          "emoji": "♋️",
           "point_type": "AxialCusps",
           "house": "First_House",
           "retrograde": false,
           "life_area": "First impressions, personal presence, and your approach to life.",
           "description": "The Ascendant, or Rising Sign, is the sign rising on the eastern horizon at your birth. It is your chart's doorway into the world: how you enter unfamiliar situations, express your presence, and begin making contact with others. Its sign describes an instinctive approach to life, including qualities people notice before they know your private story.",
-          "sign_meaning": "You meet life with warmth and a wish to bring something personal into the room. Your presence grows when you have a role that lets you express yourself. Confidence becomes easier when it no longer requires every entrance to make an impression.",
+          "sign_meaning": "You read the atmosphere before showing the whole of yourself. Sensitivity and a protective warmth shape how you meet others. Familiarity helps you open, but you can offer genuine connection without taking responsibility for everyone's comfort.",
           "house_meaning": null
         },
         "descendant": {
           "name": "Descendant",
-          "quality": "Fixed",
-          "element": "Air",
-          "sign": "Aqu",
-          "sign_num": 10,
-          "position": 25.255308056735544,
-          "abs_pos": 325.25530805673554,
-          "emoji": "♒️",
+          "quality": "Cardinal",
+          "element": "Earth",
+          "sign": "Cap",
+          "sign_num": 9,
+          "position": 13.971201999211985,
+          "abs_pos": 283.971201999212,
+          "emoji": "♑️",
           "point_type": "AxialCusps",
           "house": "Seventh_House",
           "retrograde": false,
           "life_area": "Partnership, reciprocity, and the meeting of self and other.",
           "description": "The Descendant lies opposite the Ascendant, at the western horizon of your birth chart. It describes the territory of close partnership — what draws you towards another person and what you discover through sharing life with someone whose perspective differs from yours. Its sign brings the themes of attraction, cooperation, and mutual understanding into focus.",
-          "sign_meaning": "Partnership brings friendship, individuality, and the freedom to choose your own arrangement into focus. Equality matters more than following a familiar script. Emotional availability lets that independence deepen connection instead of keeping it safely at a distance.",
+          "sign_meaning": "Partnership brings commitment, maturity, and the willingness to build over time into focus. Consistent actions make trust possible. Make room for tenderness and play so that a dependable bond does not become a life organised entirely around duty.",
           "house_meaning": null
         },
         "medium_coeli": {
           "name": "Midheaven",
-          "quality": "Fixed",
-          "element": "Earth",
-          "sign": "Tau",
-          "sign_num": 1,
-          "position": 22.136237721919358,
-          "abs_pos": 52.13623772191936,
-          "emoji": "♉️",
+          "quality": "Mutable",
+          "element": "Water",
+          "sign": "Pis",
+          "sign_num": 11,
+          "position": 21.864215085611363,
+          "abs_pos": 351.86421508561136,
+          "emoji": "♓️",
           "point_type": "AxialCusps",
           "house": "Tenth_House",
           "retrograde": false,
           "life_area": "Vocation, public direction, reputation, and contribution.",
           "description": "The Midheaven, also called Medium Coeli or MC, is an angle connected with your public direction. It describes the contribution you want to make, the responsibilities you grow into, and what you become known for beyond your private world. Its sign gives character to your ambitions and vocation, whether that calling takes shape through paid work, leadership, or another meaningful role.",
-          "sign_meaning": "You want to build a public contribution that has substance, quality, and staying power. Patience supports your direction, and tangible results matter. Keep checking that the stability you pursue still serves the life you want to live.",
+          "sign_meaning": "You want your contribution to carry imagination, compassion, or a sense of meaning beyond the task itself. Inspiration gives your direction life. Clear expectations and practical rhythms help that calling become sustainable work.",
           "house_meaning": null
         },
         "imum_coeli": {
           "name": "Imum Coeli",
-          "quality": "Fixed",
-          "element": "Water",
-          "sign": "Sco",
-          "sign_num": 7,
-          "position": 22.136237721919372,
-          "abs_pos": 232.13623772191937,
-          "emoji": "♏️",
+          "quality": "Mutable",
+          "element": "Earth",
+          "sign": "Vir",
+          "sign_num": 5,
+          "position": 21.864215085611363,
+          "abs_pos": 171.86421508561136,
+          "emoji": "♍️",
           "point_type": "AxialCusps",
           "house": "Fourth_House",
           "retrograde": false,
           "life_area": "Home, roots, privacy, and emotional foundations.",
           "description": "The Imum Coeli, or IC, lies opposite the Midheaven and points towards the private foundations of your chart. It describes roots, belonging, and what helps you feel at home when public expectations fall away. Its sign explores the inner ground you return to for reassurance and the kind of private life that supports you from within.",
-          "sign_meaning": "At your roots is a need for privacy and trust deep enough to hold feelings you do not show everywhere. Your inner life deserves patient attention. Build safety through present choices without requiring complete control over the people you love.",
+          "sign_meaning": "At your roots is a wish for a private life that feels manageable and thoughtfully cared for. Practical rituals can bring reassurance. Home becomes more restorative when it is allowed to hold unfinished tasks alongside the people who live there.",
           "house_meaning": null
         },
         "chiron": {
           "name": "Chiron",
-          "quality": "Cardinal",
-          "element": "Water",
-          "sign": "Can",
-          "sign_num": 3,
-          "position": 16.179725589889912,
-          "abs_pos": 106.17972558988991,
-          "emoji": "♋️",
-          "point_type": "Planet",
-          "house": "Eleventh_House",
-          "retrograde": false,
-          "life_area": "Tender places, self-understanding, and wisdom through care.",
-          "description": "Chiron marks a tender thread in the chart — an area where vulnerability asks for understanding rather than another demand to be stronger. Its symbolism connects sensitivity with the wisdom that grows through meeting yourself with honesty and care. Its sign and house give that theme context; they invite reflection without telling you what experiences you must have lived through.",
-          "sign_meaning": "Belonging and the freedom to need care touch a tender place. Holding everything together can feel safer than asking to be held. Let trusted people know what would comfort you instead of making them guess from how much you give.",
-          "house_meaning": "Belonging among others touches a tender place when participation seems to require editing away your difference. You do not need to be understood by everyone to find real connection. Begin with a shared interest that leaves room for your own voice."
-        },
-        "mean_lilith": {
-          "name": "Lilith",
-          "quality": "Fixed",
-          "element": "Water",
-          "sign": "Sco",
-          "sign_num": 7,
-          "position": 25.08281465597608,
-          "abs_pos": 235.08281465597608,
-          "emoji": "♏️",
-          "point_type": "Planet",
-          "house": "Fourth_House",
-          "retrograde": false,
-          "life_area": "Untamed desire, autonomy, instinct, and authenticity.",
-          "description": "Black Moon Lilith speaks to the parts of yourself that resist being made smaller for acceptance: desire, anger, independence, and the right to choose. Its placement explores where expectations meet your insistence on living honestly. The mean version used here is a calculated lunar-apogee point, representing the averaged direction of the Moon's farthest point from Earth, rather than a physical planet or asteroid.",
-          "sign_meaning": "You want intimacy that can hold desire, complexity, and the truth beneath polite appearances. Your private life belongs to you. Power becomes clearer when attraction is matched by consent and closeness does not require either person to surrender their agency.",
-          "house_meaning": "You question roles that make belonging conditional on compliance. Your private life needs room for honest feeling and chosen loyalties. Build a home where care does not require becoming smaller to keep your place."
-        },
-        "first_house": {
-          "name": "First House",
           "quality": "Fixed",
           "element": "Fire",
           "sign": "Leo",
           "sign_num": 4,
-          "position": 25.255308056735544,
-          "abs_pos": 145.25530805673554,
+          "position": 23.079512987323653,
+          "abs_pos": 143.07951298732365,
           "emoji": "♌️",
+          "point_type": "Planet",
+          "house": "Second_House",
+          "retrograde": false,
+          "life_area": "Tender places, self-understanding, and wisdom through care.",
+          "description": "Chiron marks a tender thread in the chart — an area where vulnerability asks for understanding rather than another demand to be stronger. Its symbolism connects sensitivity with the wisdom that grows through meeting yourself with honesty and care. Its sign and house give that theme context; they invite reflection without telling you what experiences you must have lived through.",
+          "sign_meaning": "Being seen for something personal touches a tender place. Creative expression can feel exposing precisely because it matters. Return to the pleasure of making something before asking whether it deserves admiration.",
+          "house_meaning": "Your sense of worth touches a tender place when it becomes tied to what you can provide or possess. Practical stability matters, but it cannot answer every question about being enough. Let ordinary care affirm a value you do not have to earn."
+        },
+        "mean_lilith": {
+          "name": "Lilith",
+          "quality": "Mutable",
+          "element": "Water",
+          "sign": "Pis",
+          "sign_num": 11,
+          "position": 2.995074148036281,
+          "abs_pos": 332.9950741480363,
+          "emoji": "♓️",
+          "point_type": "Planet",
+          "house": "Ninth_House",
+          "retrograde": false,
+          "life_area": "Untamed desire, autonomy, instinct, and authenticity.",
+          "description": "Black Moon Lilith speaks to the parts of yourself that resist being made smaller for acceptance: desire, anger, independence, and the right to choose. Its placement explores where expectations meet your insistence on living honestly. The mean version used here is a calculated lunar-apogee point, representing the averaged direction of the Moon's farthest point from Earth, rather than a physical planet or asteroid.",
+          "sign_meaning": "You question ideals that confuse compassion with disappearance or spirituality with endless surrender. Your sensitivity deserves a shape of its own. Saying no can protect the imagination and tenderness you want to bring into the world.",
+          "house_meaning": "You question authorities that claim the right to define what you should believe. Meaning needs room for your own inquiry. Let your independence support thoughtful exploration rather than making every inherited idea unacceptable on principle."
+        },
+        "first_house": {
+          "name": "First House",
+          "quality": "Cardinal",
+          "element": "Water",
+          "sign": "Can",
+          "sign_num": 3,
+          "position": 13.971201999211985,
+          "abs_pos": 103.97120199921198,
+          "emoji": "♋️",
           "point_type": "House",
           "house": null,
           "retrograde": null,
           "life_area": "Identity, appearance, self-expression, and the way you meet life.",
           "description": "Your first house is all about you — how you come across, your physical presence, and the energy you bring into a room. It's your default mode of being.",
-          "sign_meaning": "You may meet life with warmth, creativity, and a wish to express something unmistakably your own. Your presence can encourage others, and confidence becomes more comfortable when it does not depend on constant recognition.",
+          "sign_meaning": "You may approach unfamiliar situations with sensitivity, noticing the emotional atmosphere before showing your whole self. Confidence grows when you feel safe enough to be open while remembering that other people's moods are not yours to carry.",
           "house_meaning": null
         },
         "second_house": {
           "name": "Second House",
-          "quality": "Mutable",
-          "element": "Earth",
-          "sign": "Vir",
-          "sign_num": 5,
-          "position": 20.42329398532121,
-          "abs_pos": 170.4232939853212,
-          "emoji": "♍️",
+          "quality": "Fixed",
+          "element": "Fire",
+          "sign": "Leo",
+          "sign_num": 4,
+          "position": 2.920224936261377,
+          "abs_pos": 122.92022493626138,
+          "emoji": "♌️",
           "point_type": "House",
           "house": null,
           "retrograde": null,
           "life_area": "Money, possessions, values, self-worth, and material security.",
           "description": "This house governs what you value — both materially and emotionally. It speaks to how you earn, spend, and relate to security and self-worth.",
-          "sign_meaning": "You may build security through useful skills, careful planning, and attention to everyday details. Your practical judgement can serve you well, especially when you allow reasonable enjoyment instead of treating every expense as a mistake.",
+          "sign_meaning": "You may value creativity, generosity, and possessions that express your personality, enjoying the freedom to treat yourself and others. Spending in line with your priorities can help pleasure support your confidence without becoming a measure of worth.",
           "house_meaning": null
         },
         "third_house": {
           "name": "Third House",
-          "quality": "Cardinal",
-          "element": "Air",
-          "sign": "Lib",
-          "sign_num": 6,
-          "position": 19.726434029597442,
-          "abs_pos": 199.72643402959744,
-          "emoji": "♎️",
+          "quality": "Fixed",
+          "element": "Fire",
+          "sign": "Leo",
+          "sign_num": 4,
+          "position": 24.44027998576297,
+          "abs_pos": 144.44027998576297,
+          "emoji": "♌️",
           "point_type": "House",
           "house": null,
           "retrograde": null,
           "life_area": "Communication, learning, siblings, and your immediate environment.",
           "description": "The third house rules your mind in everyday mode — how you communicate, learn, and process information. It also covers siblings and your immediate environment.",
-          "sign_meaning": "You may communicate diplomatically, considering several sides and looking for language that keeps exchanges fair. Your gift for discussion becomes stronger when you can state your own view without needing everyone to agree.",
+          "sign_meaning": "You may enjoy telling stories, expressing ideas with colour, and bringing warmth to everyday conversations. Your enthusiasm can make learning engaging, especially when you leave room for quieter voices and perspectives unlike your own.",
           "house_meaning": null
         },
         "fourth_house": {
           "name": "Fourth House",
-          "quality": "Fixed",
-          "element": "Water",
-          "sign": "Sco",
-          "sign_num": 7,
-          "position": 22.136237721919372,
-          "abs_pos": 232.13623772191937,
-          "emoji": "♏️",
+          "quality": "Mutable",
+          "element": "Earth",
+          "sign": "Vir",
+          "sign_num": 5,
+          "position": 21.864215085611363,
+          "abs_pos": 171.86421508561136,
+          "emoji": "♍️",
           "point_type": "House",
           "house": null,
           "retrograde": null,
           "life_area": "Home, family, roots, privacy, and emotional foundations.",
           "description": "Your emotional foundation lives here — home, family, roots, and where you feel safe. It reveals what 'home' truly means to you on a soul level.",
-          "sign_meaning": "You may need privacy and deep trust before your home truly feels like a refuge. Exploring inherited emotional patterns at your own pace can help you build security around the life you choose now.",
+          "sign_meaning": "You may create security through practical care, thoughtful organisation, and making your living space work well. Small acts of maintenance can be comforting, while leaving room for ordinary mess keeps home a place of rest.",
           "house_meaning": null
         },
         "fifth_house": {
           "name": "Fifth House",
-          "quality": "Mutable",
-          "element": "Fire",
-          "sign": "Sag",
-          "sign_num": 8,
-          "position": 25.03011279369406,
-          "abs_pos": 265.03011279369406,
-          "emoji": "♐️",
+          "quality": "Cardinal",
+          "element": "Air",
+          "sign": "Lib",
+          "sign_num": 6,
+          "position": 27.85717944338407,
+          "abs_pos": 207.85717944338407,
+          "emoji": "♎️",
           "point_type": "House",
           "house": null,
           "retrograde": null,
           "life_area": "Creativity, romance, pleasure, play, and personal expression.",
           "description": "This is your house of joy — creativity, romance, play, and self-expression. It's where you shine for the pure pleasure of shining.",
-          "sign_meaning": "You may find joy in adventure, humour, learning, and experiences that expand your sense of possibility. Play and romance thrive with room to explore, while honest expectations help enthusiasm remain considerate of others.",
+          "sign_meaning": "You may find pleasure in art, beauty, shared experiences, and the graceful exchange of affection. Creating with or enjoying another person can inspire you, while naming your own desires keeps romance and play reciprocal.",
           "house_meaning": null
         },
         "sixth_house": {
           "name": "Sixth House",
-          "quality": "Cardinal",
-          "element": "Earth",
-          "sign": "Cap",
-          "sign_num": 9,
-          "position": 26.293322196994495,
-          "abs_pos": 296.2933221969945,
-          "emoji": "♑️",
+          "quality": "Mutable",
+          "element": "Fire",
+          "sign": "Sag",
+          "sign_num": 8,
+          "position": 8.605148396187076,
+          "abs_pos": 248.60514839618708,
+          "emoji": "♐️",
           "point_type": "House",
           "house": null,
           "retrograde": null,
           "life_area": "Daily routines, work, service, wellbeing, and practical responsibilities.",
           "description": "The sixth house governs your daily life — health habits, work routines, and acts of service. It's about how you show up and take care of business day to day.",
-          "sign_meaning": "You may approach daily work with discipline and a strong sense of responsibility, finding satisfaction in dependable progress. Sustainable habits also make room for rest, delegation, and the recognition that productivity is not a measure of personal worth.",
+          "sign_meaning": "You may need purpose, freedom, and room to learn within your everyday responsibilities. Flexible routines with a few clear commitments can help you balance your appetite for variety with the follow-through daily life requires.",
           "house_meaning": null
         },
         "seventh_house": {
           "name": "Seventh House",
-          "quality": "Fixed",
-          "element": "Air",
-          "sign": "Aqu",
-          "sign_num": 10,
-          "position": 25.255308056735544,
-          "abs_pos": 325.25530805673554,
-          "emoji": "♒️",
+          "quality": "Cardinal",
+          "element": "Earth",
+          "sign": "Cap",
+          "sign_num": 9,
+          "position": 13.971201999211985,
+          "abs_pos": 283.971201999212,
+          "emoji": "♑️",
           "point_type": "House",
           "house": null,
           "retrograde": null,
           "life_area": "Partnerships, commitment, cooperation, and one-to-one relationships.",
           "description": "Partnerships of all kinds — romantic, business, and close one-on-one relationships. This house shows what you seek in others and how you relate.",
-          "sign_meaning": "You may seek an equal partnership that respects individuality, friendship, and an unconventional approach to life. Independence can strengthen connection when it sits alongside emotional availability and agreements both people genuinely understand.",
+          "sign_meaning": "You may approach commitment seriously, valuing reliability, maturity, and the willingness to build something lasting together. Shared responsibility can provide security, while tenderness and play keep partnership from feeling like a set of duties.",
           "house_meaning": null
         },
         "eighth_house": {
           "name": "Eighth House",
-          "quality": "Mutable",
-          "element": "Water",
-          "sign": "Pis",
-          "sign_num": 11,
-          "position": 20.42329398532121,
-          "abs_pos": 350.4232939853212,
-          "emoji": "♓️",
+          "quality": "Fixed",
+          "element": "Air",
+          "sign": "Aqu",
+          "sign_num": 10,
+          "position": 2.920224936261377,
+          "abs_pos": 302.9202249362614,
+          "emoji": "♒️",
           "point_type": "House",
           "house": null,
           "retrograde": null,
           "life_area": "Intimacy, shared resources, trust, transformation, and life’s deeper mysteries.",
           "description": "The deep end — shared resources, intimacy, psychological transformation, and everything hidden beneath the surface. This house doesn't do shallow.",
-          "sign_meaning": "You may approach intimacy with compassion and a strong sensitivity to what remains unspoken. Clear consent, financial agreements, and personal boundaries help deep connection feel nourishing without dissolving your sense of self.",
+          "sign_meaning": "You may examine intimacy and shared commitments through an independent or unconventional lens, valuing autonomy even within deep connection. Clear agreements and emotional presence help you honour both freedom and the realities of interdependence.",
           "house_meaning": null
         },
         "ninth_house": {
           "name": "Ninth House",
-          "quality": "Cardinal",
-          "element": "Fire",
-          "sign": "Ari",
-          "sign_num": 0,
-          "position": 19.726434029597442,
-          "abs_pos": 19.726434029597442,
-          "emoji": "♈️",
+          "quality": "Fixed",
+          "element": "Air",
+          "sign": "Aqu",
+          "sign_num": 10,
+          "position": 24.44027998576297,
+          "abs_pos": 324.44027998576297,
+          "emoji": "♒️",
           "point_type": "House",
           "house": null,
           "retrograde": null,
           "life_area": "Beliefs, higher learning, travel, philosophy, and the search for meaning.",
           "description": "Your quest for meaning — higher education, travel, philosophy, and big-picture beliefs. This house expands your horizons beyond the familiar.",
-          "sign_meaning": "You may pursue beliefs, travel, and higher learning with independence and a desire to discover things firsthand. Your courage can open new horizons, while listening to unfamiliar perspectives keeps conviction from becoming certainty too quickly.",
+          "sign_meaning": "You may question conventional beliefs and feel drawn to ideas about progress, society, or alternative ways of living. Your independent thinking can widen possibilities, especially when it stays connected to lived experience and thoughtful evidence.",
           "house_meaning": null
         },
         "tenth_house": {
           "name": "Tenth House",
-          "quality": "Fixed",
-          "element": "Earth",
-          "sign": "Tau",
-          "sign_num": 1,
-          "position": 22.136237721919358,
-          "abs_pos": 52.13623772191936,
-          "emoji": "♉️",
+          "quality": "Mutable",
+          "element": "Water",
+          "sign": "Pis",
+          "sign_num": 11,
+          "position": 21.864215085611363,
+          "abs_pos": 351.86421508561136,
+          "emoji": "♓️",
           "point_type": "House",
           "house": null,
           "retrograde": null,
           "life_area": "Career, vocation, reputation, achievement, and public life.",
           "description": "Your public face and professional path. The tenth house reveals your ambitions, reputation, and the legacy you're building in the world.",
-          "sign_meaning": "You may seek a vocation that offers stability, tangible results, and the satisfaction of building something lasting. A steady pace can support your public life, while remaining adaptable helps security coexist with new opportunities.",
+          "sign_meaning": "You may seek work that makes room for compassion, imagination, or a meaningful sense of service. Your sensitivity can enrich your contribution, while clear expectations and boundaries help inspiration become a sustainable vocation.",
           "house_meaning": null
         },
         "eleventh_house": {
           "name": "Eleventh House",
-          "quality": "Mutable",
-          "element": "Air",
-          "sign": "Gem",
-          "sign_num": 2,
-          "position": 25.030112793694073,
-          "abs_pos": 85.03011279369407,
-          "emoji": "♊️",
+          "quality": "Cardinal",
+          "element": "Fire",
+          "sign": "Ari",
+          "sign_num": 0,
+          "position": 27.85717944338408,
+          "abs_pos": 27.85717944338408,
+          "emoji": "♈️",
           "point_type": "House",
           "house": null,
           "retrograde": null,
           "life_area": "Friendship, community, future hopes, networks, and collective causes.",
           "description": "Friends, communities, and your vision for the future. This house connects you to groups, social causes, and the hopes that drive you forward.",
-          "sign_meaning": "You may enjoy varied social circles, exchanging ideas, and meeting people through shared interests. Your curiosity can connect different communities, while regular attention helps promising acquaintances become friendships with depth.",
+          "sign_meaning": "You may take initiative in friendships or groups, bringing energy to new plans and shared causes. Your independence can inspire action, while making room for other people's ideas helps a collective effort feel truly shared.",
           "house_meaning": null
         },
         "twelfth_house": {
           "name": "Twelfth House",
-          "quality": "Cardinal",
-          "element": "Water",
-          "sign": "Can",
-          "sign_num": 3,
-          "position": 26.293322196994524,
-          "abs_pos": 116.29332219699452,
-          "emoji": "♋️",
+          "quality": "Mutable",
+          "element": "Air",
+          "sign": "Gem",
+          "sign_num": 2,
+          "position": 8.60514839618709,
+          "abs_pos": 68.60514839618709,
+          "emoji": "♊️",
           "point_type": "House",
           "house": null,
           "retrograde": null,
           "life_area": "Inner life, solitude, spirituality, healing, and unconscious patterns.",
           "description": "The hidden realm — your unconscious patterns, spiritual life, and need for solitude. What happens here often works behind the scenes, quietly shaping everything.",
-          "sign_meaning": "You may carry deep emotional impressions into your private world and need a gentle place to process them. Solitude can be restorative when it includes self-care and boundaries, rather than silently holding everyone else's feelings.",
+          "sign_meaning": "Your private world may be full of questions, inner conversations, and ideas that need somewhere to settle. Journalling or quiet reflection can help you hear what matters beneath the mental activity without needing to explain every feeling.",
           "house_meaning": null
         },
         "mean_node": {
           "name": "North Node",
-          "quality": "Fixed",
-          "element": "Air",
-          "sign": "Aqu",
-          "sign_num": 10,
-          "position": 9.635671512651754,
-          "abs_pos": 309.63567151265175,
-          "emoji": "♒️",
+          "quality": "Mutable",
+          "element": "Fire",
+          "sign": "Sag",
+          "sign_num": 8,
+          "position": 23.03240881360699,
+          "abs_pos": 263.032408813607,
+          "emoji": "♐️",
           "point_type": "Planet",
           "house": "Sixth_House",
           "retrograde": true,
           "life_area": "Growth, emerging qualities, and a developing direction.",
           "description": "The North Node symbolises a direction of growth — qualities and experiences that ask you to stretch beyond a familiar response. It is a calculated point where the Moon's orbit crosses the ecliptic from south to north. Its sign and house describe what you are learning to practise, while the opposite South Node offers strengths you can bring with you.",
-          "sign_meaning": "Your growth asks you to contribute to a world larger than your own recognition. Creativity becomes richer through participation and difference. Bring your spark to a shared project without needing to control where every bit of light falls.",
+          "sign_meaning": "Your growth asks you to connect information with conviction and a sense of direction. Curiosity remains essential, but another fact cannot make every choice for you. Give your understanding a purpose you are willing to act on.",
           "house_meaning": "Your growth asks you to turn reflection into a manageable daily practice. Useful skills give your inner understanding somewhere to go. Begin with one repeatable action instead of waiting for a feeling of complete readiness."
         },
         "true_node": {
           "name": "North Node",
-          "quality": "Fixed",
-          "element": "Air",
-          "sign": "Aqu",
-          "sign_num": 10,
-          "position": 8.122831321279477,
-          "abs_pos": 308.1228313212795,
-          "emoji": "♒️",
+          "quality": "Mutable",
+          "element": "Fire",
+          "sign": "Sag",
+          "sign_num": 8,
+          "position": 21.686362981252387,
+          "abs_pos": 261.6863629812524,
+          "emoji": "♐️",
           "point_type": "Planet",
           "house": "Sixth_House",
           "retrograde": true,
           "life_area": "Growth, emerging qualities, and a developing direction.",
           "description": "The North Node symbolises a direction of growth — qualities and experiences that ask you to stretch beyond a familiar response. It is a calculated point where the Moon's orbit crosses the ecliptic from south to north. Its sign and house describe what you are learning to practise, while the opposite South Node offers strengths you can bring with you.",
-          "sign_meaning": "Your growth asks you to contribute to a world larger than your own recognition. Creativity becomes richer through participation and difference. Bring your spark to a shared project without needing to control where every bit of light falls.",
+          "sign_meaning": "Your growth asks you to connect information with conviction and a sense of direction. Curiosity remains essential, but another fact cannot make every choice for you. Give your understanding a purpose you are willing to act on.",
           "house_meaning": "Your growth asks you to turn reflection into a manageable daily practice. Useful skills give your inner understanding somewhere to go. Begin with one repeatable action instead of waiting for a feeling of complete readiness."
         },
         "mean_south_node": {
           "name": "South Node",
-          "quality": "Fixed",
-          "element": "Fire",
-          "sign": "Leo",
-          "sign_num": 4,
-          "position": 9.635671512651754,
-          "abs_pos": 129.63567151265175,
-          "emoji": "♌️",
+          "quality": "Mutable",
+          "element": "Air",
+          "sign": "Gem",
+          "sign_num": 2,
+          "position": 23.03240881360699,
+          "abs_pos": 83.03240881360699,
+          "emoji": "♊️",
           "point_type": "Planet",
           "house": "Twelfth_House",
           "retrograde": true,
           "life_area": "Familiar strengths, habitual responses, and integration.",
           "description": "The South Node symbolises the abilities and responses that feel familiar enough to reach for automatically. It is a calculated point where the Moon's orbit crosses the ecliptic from north to south, opposite the North Node. Its sign and house explore what you can draw on with confidence and what becomes limiting when it is your only way of responding.",
-          "sign_meaning": "Warmth, creative expression, and a sense of personal style are familiar gifts. Recognition becomes limiting when it must confirm every contribution. Let your individuality enrich a group without needing to carry the whole story.",
+          "sign_meaning": "Curiosity and an ability to see several possibilities are familiar gifts. More information can become a way to delay choosing a direction. Let what you know support a meaningful decision, even when another question remains.",
           "house_meaning": "Solitude, imagination, and the inner world are familiar refuges. Keep their depth while giving everyday life a practical rhythm. A small completed action can help what you understand privately become something you can participate in openly."
         },
         "true_south_node": {
           "name": "South Node",
-          "quality": "Fixed",
-          "element": "Fire",
-          "sign": "Leo",
-          "sign_num": 4,
-          "position": 8.122831321279477,
-          "abs_pos": 128.12283132127948,
-          "emoji": "♌️",
+          "quality": "Mutable",
+          "element": "Air",
+          "sign": "Gem",
+          "sign_num": 2,
+          "position": 21.686362981252387,
+          "abs_pos": 81.68636298125239,
+          "emoji": "♊️",
           "point_type": "Planet",
           "house": "Twelfth_House",
           "retrograde": true,
           "life_area": "Familiar strengths, habitual responses, and integration.",
           "description": "The South Node symbolises the abilities and responses that feel familiar enough to reach for automatically. It is a calculated point where the Moon's orbit crosses the ecliptic from north to south, opposite the North Node. Its sign and house explore what you can draw on with confidence and what becomes limiting when it is your only way of responding.",
-          "sign_meaning": "Warmth, creative expression, and a sense of personal style are familiar gifts. Recognition becomes limiting when it must confirm every contribution. Let your individuality enrich a group without needing to carry the whole story.",
+          "sign_meaning": "Curiosity and an ability to see several possibilities are familiar gifts. More information can become a way to delay choosing a direction. Let what you know support a meaningful decision, even when another question remains.",
           "house_meaning": "Solitude, imagination, and the inner world are familiar refuges. Keep their depth while giving everyday life a practical rhythm. A small completed action can help what you understand privately become something you can participate in openly."
         },
         "planets_names_list": [
@@ -620,23 +608,23 @@
           "Twelfth_House"
         ],
         "lunar_phase": {
-          "degrees_between_s_m": 276.05451901079084,
-          "moon_phase": 22,
-          "sun_phase": 22,
-          "moon_emoji": "🌗",
-          "moon_phase_name": "Last Quarter"
+          "degrees_between_s_m": 209.18414904346895,
+          "moon_phase": 17,
+          "sun_phase": 15,
+          "moon_emoji": "🌖",
+          "moon_phase_name": "Waning Gibbous"
         }
       },
       "chart_data": {
         "planetary_positions": [
           {
             "name": "Sun",
-            "sign": "Gem",
-            "degree": 25.25,
-            "absolute_longitude": 85.25,
-            "house": 11,
+            "sign": "Sco",
+            "degree": 20.63,
+            "absolute_longitude": 230.63,
+            "house": 5,
             "is_retrograde": false,
-            "speed": 0.955,
+            "speed": 1.0061,
             "declination": null,
             "declination_speed": null,
             "ecliptic_latitude": null,
@@ -649,12 +637,12 @@
           },
           {
             "name": "Moon",
-            "sign": "Ari",
-            "degree": 1.31,
-            "absolute_longitude": 1.31,
-            "house": 8,
+            "sign": "Gem",
+            "degree": 19.81,
+            "absolute_longitude": 79.81,
+            "house": 12,
             "is_retrograde": false,
-            "speed": 13.8029,
+            "speed": 13.5329,
             "declination": null,
             "declination_speed": null,
             "ecliptic_latitude": null,
@@ -667,12 +655,12 @@
           },
           {
             "name": "Mercury",
-            "sign": "Gem",
-            "degree": 7.74,
-            "absolute_longitude": 67.74,
-            "house": 10,
-            "is_retrograde": false,
-            "speed": 1.7694,
+            "sign": "Sag",
+            "degree": 8.24,
+            "absolute_longitude": 248.24,
+            "house": 5,
+            "is_retrograde": true,
+            "speed": -0.2111,
             "declination": null,
             "declination_speed": null,
             "ecliptic_latitude": null,
@@ -685,12 +673,12 @@
           },
           {
             "name": "Venus",
-            "sign": "Tau",
-            "degree": 20.16,
-            "absolute_longitude": 50.16,
-            "house": 9,
+            "sign": "Sag",
+            "degree": 29.07,
+            "absolute_longitude": 269.07,
+            "house": 6,
             "is_retrograde": false,
-            "speed": 1.1771,
+            "speed": 1.2029,
             "declination": null,
             "declination_speed": null,
             "ecliptic_latitude": null,
@@ -703,12 +691,12 @@
           },
           {
             "name": "Mars",
-            "sign": "Ari",
-            "degree": 11.88,
-            "absolute_longitude": 11.88,
-            "house": 8,
+            "sign": "Can",
+            "degree": 25.94,
+            "absolute_longitude": 115.94,
+            "house": 1,
             "is_retrograde": false,
-            "speed": 0.7176,
+            "speed": 0.1985,
             "declination": null,
             "declination_speed": null,
             "ecliptic_latitude": null,
@@ -721,12 +709,12 @@
           },
           {
             "name": "Jupiter",
-            "sign": "Can",
-            "degree": 16.14,
-            "absolute_longitude": 106.14,
-            "house": 11,
+            "sign": "Lib",
+            "degree": 6.62,
+            "absolute_longitude": 186.62,
+            "house": 4,
             "is_retrograde": false,
-            "speed": 0.2173,
+            "speed": 0.1827,
             "declination": null,
             "declination_speed": null,
             "ecliptic_latitude": null,
@@ -739,12 +727,12 @@
           },
           {
             "name": "Saturn",
-            "sign": "Cap",
-            "degree": 23.96,
-            "absolute_longitude": 293.96,
-            "house": 5,
-            "is_retrograde": true,
-            "speed": -0.0598,
+            "sign": "Aqu",
+            "degree": 12.46,
+            "absolute_longitude": 312.46,
+            "house": 8,
+            "is_retrograde": false,
+            "speed": 0.046,
             "declination": null,
             "declination_speed": null,
             "ecliptic_latitude": null,
@@ -758,11 +746,11 @@
           {
             "name": "Uranus",
             "sign": "Cap",
-            "degree": 8.12,
-            "absolute_longitude": 278.12,
-            "house": 5,
-            "is_retrograde": true,
-            "speed": -0.0392,
+            "degree": 15.11,
+            "absolute_longitude": 285.11,
+            "house": 7,
+            "is_retrograde": false,
+            "speed": 0.0402,
             "declination": null,
             "declination_speed": null,
             "ecliptic_latitude": null,
@@ -776,11 +764,11 @@
           {
             "name": "Neptune",
             "sign": "Cap",
-            "degree": 13.69,
-            "absolute_longitude": 283.69,
-            "house": 5,
-            "is_retrograde": true,
-            "speed": -0.0253,
+            "degree": 16.76,
+            "absolute_longitude": 286.76,
+            "house": 7,
+            "is_retrograde": false,
+            "speed": 0.0242,
             "declination": null,
             "declination_speed": null,
             "ecliptic_latitude": null,
@@ -794,11 +782,11 @@
           {
             "name": "Pluto",
             "sign": "Sco",
-            "degree": 15.38,
-            "absolute_longitude": 225.38,
-            "house": 3,
-            "is_retrograde": true,
-            "speed": -0.0197,
+            "degree": 22.78,
+            "absolute_longitude": 232.78,
+            "house": 5,
+            "is_retrograde": false,
+            "speed": 0.0402,
             "declination": null,
             "declination_speed": null,
             "ecliptic_latitude": null,
@@ -813,81 +801,81 @@
         "house_cusps": [
           {
             "house": 1,
-            "sign": "Leo",
-            "degree": 25.26,
-            "absolute_longitude": 145.26
+            "sign": "Can",
+            "degree": 13.97,
+            "absolute_longitude": 103.97
           },
           {
             "house": 2,
-            "sign": "Vir",
-            "degree": 20.42,
-            "absolute_longitude": 170.42
+            "sign": "Leo",
+            "degree": 2.92,
+            "absolute_longitude": 122.92
           },
           {
             "house": 3,
-            "sign": "Lib",
-            "degree": 19.73,
-            "absolute_longitude": 199.73
+            "sign": "Leo",
+            "degree": 24.44,
+            "absolute_longitude": 144.44
           },
           {
             "house": 4,
-            "sign": "Sco",
-            "degree": 22.14,
-            "absolute_longitude": 232.14
+            "sign": "Vir",
+            "degree": 21.86,
+            "absolute_longitude": 171.86
           },
           {
             "house": 5,
-            "sign": "Sag",
-            "degree": 25.03,
-            "absolute_longitude": 265.03
+            "sign": "Lib",
+            "degree": 27.86,
+            "absolute_longitude": 207.86
           },
           {
             "house": 6,
-            "sign": "Cap",
-            "degree": 26.29,
-            "absolute_longitude": 296.29
+            "sign": "Sag",
+            "degree": 8.61,
+            "absolute_longitude": 248.61
           },
           {
             "house": 7,
-            "sign": "Aqu",
-            "degree": 25.26,
-            "absolute_longitude": 325.26
+            "sign": "Cap",
+            "degree": 13.97,
+            "absolute_longitude": 283.97
           },
           {
             "house": 8,
-            "sign": "Pis",
-            "degree": 20.42,
-            "absolute_longitude": 350.42
+            "sign": "Aqu",
+            "degree": 2.92,
+            "absolute_longitude": 302.92
           },
           {
             "house": 9,
-            "sign": "Ari",
-            "degree": 19.73,
-            "absolute_longitude": 19.73
+            "sign": "Aqu",
+            "degree": 24.44,
+            "absolute_longitude": 324.44
           },
           {
             "house": 10,
-            "sign": "Tau",
-            "degree": 22.14,
-            "absolute_longitude": 52.14
+            "sign": "Pis",
+            "degree": 21.86,
+            "absolute_longitude": 351.86
           },
           {
             "house": 11,
-            "sign": "Gem",
-            "degree": 25.03,
-            "absolute_longitude": 85.03
+            "sign": "Ari",
+            "degree": 27.86,
+            "absolute_longitude": 27.86
           },
           {
             "house": 12,
-            "sign": "Can",
-            "degree": 26.29,
-            "absolute_longitude": 116.29
+            "sign": "Gem",
+            "degree": 8.61,
+            "absolute_longitude": 68.61
           }
         ],
         "fixed_stars": null,
         "meta": {
           "chart_type": "natal",
-          "calculation_time": "2026-09-30T12:59:21.305852Z",
+          "calculation_time": "2026-10-08T14:54:48.432463Z",
           "house_system": "P",
           "zodiac_type": "Tropic",
           "active_points": [
@@ -908,87 +896,6 @@
       "warnings": null,
       "antiscia_aspects": null
     },
-    "createdAt": "2026-10-01T13:52:41.26731",
-    "interpretationText": "This individual's chart presents a dynamic interplay between intellectual curiosity, emotional intensity, and a desire for creative expression. The Leo Ascendant suggests a natural flair for drama, a sense of pride in one's appearance, and a tendency to draw attention to oneself. However, this initial impression may be tempered by the Moon's placement in Aries, which can bring a sense of restlessness, impulsiveness, and a need for immediate gratification.\n\nThe Sun in Gemini, 11th House, indicates a mind that is constantly seeking new information, connections, and experiences. This person is likely to be naturally curious, enjoy learning, and have a strong desire for intellectual exploration. However, the Aries Moon's influence can also bring a sense of emotional intensity, making it challenging to manage one's feelings in the moment. This may lead to a tendency to act on impulse, without fully considering the consequences.\n\nThe Mars square Neptune and Mars square Uranus aspects suggest a complex emotional landscape, where the individual may struggle to reconcile their desires with the demands of the external world. This can lead to feelings of frustration, anxiety, and a sense of disconnection from one's own emotions. The Venus trine Saturn aspect, on the other hand, indicates a deep-seated desire for stability, security, and sensuality, which may be at odds with the more impulsive and unpredictable aspects of the chart.\n\nThe Jupiter in Cancer, 11th House, placement suggests a strong need for emotional support, connection, and a sense of belonging. This person may be drawn to roles or activities that provide a sense of community and shared purpose. The Saturn in Capricorn, 5th House, retrograde placement adds a layer of complexity, suggesting that the individual's creative expression and personal identity may be tied to a sense of duty, responsibility, and a need for validation from others.\n\nThe Midheaven in Taurus, 10th House, placement indicates a strong desire for stability, security, and a sense of authority in one's career or public direction. This person may be drawn to roles that provide a sense of structure, routine, and a connection to the material world. However, the interplay between the chart's various elements suggests that this individual may struggle to reconcile their creative impulses with the demands of their career or public life.\n\nOverall, this person's chart pattern suggests a dynamic interplay between intellectual curiosity, emotional intensity, and a desire for creative expression. They may struggle to manage their impulses, reconcile their desires with the demands of the external world, and find a sense of stability and security in their personal and professional life.",
-    "aggregatesPlus": null,
-    "aggregatesPremium": {
-      "aggregates": {
-        "dominantPlanet": {
-          "name": "Mercury",
-          "description": "Highly intelligent, analytical, excellent communicator, quick-witted, and curious.",
-          "interpretation": "With Mercury identified as your dominant planet, themes of learning, communication, and making connections come into focus. You may enjoy asking questions, exchanging ideas, and finding words for complex experiences. Curiosity can open many doors. Give your mind time to rest, and remember that listening, feeling, and taking action can be as useful as further analysis."
-        },
-        "elementBalance": {
-          "fire": {
-            "count": 2,
-            "percentage": 20
-          },
-          "earth": {
-            "count": 4,
-            "percentage": 40
-          },
-          "air": {
-            "count": 2,
-            "percentage": 20
-          },
-          "water": {
-            "count": 2,
-            "percentage": 20
-          },
-          "dominantElements": [
-            "Earth"
-          ],
-          "description": "Shows how Fire, Earth, Air, and Water are distributed in your chart, reflecting inspiration, practicality, thought, and emotion.",
-          "interpretation": "Earth leads your elemental balance, highlighting practicality, patience, and a desire to create something lasting. You may feel grounded when your efforts produce tangible results and your commitments have a clear purpose. Reliability can be one of your strengths. Leave room for change and emotional expression alongside the search for stability; a secure foundation can support experimentation as well as routine."
-        },
-        "modalityBalance": {
-          "cardinal": {
-            "count": 6,
-            "percentage": 60
-          },
-          "fixed": {
-            "count": 2,
-            "percentage": 20
-          },
-          "mutable": {
-            "count": 2,
-            "percentage": 20
-          },
-          "dominantModalities": [
-            "Cardinal"
-          ],
-          "description": "Reveals your chart’s balance of initiating action, sustaining progress, and adapting to change.",
-          "interpretation": "Cardinal energy leads your chart, highlighting initiative and a desire to move things forward. You may feel energised by fresh starts and opportunities to take the lead. Give yourself time to follow through before taking on the next beginning."
-        },
-        "hemisphereBalance": {
-          "eastWest": {
-            "east": {
-              "count": 4,
-              "percentage": 40
-            },
-            "west": {
-              "count": 6,
-              "percentage": 60
-            },
-            "dominantHemisphere": "West",
-            "interpretation": "More of your counted placements fall in the western hemisphere."
-          },
-          "northSouth": {
-            "north": {
-              "count": 4,
-              "percentage": 40
-            },
-            "south": {
-              "count": 6,
-              "percentage": 60
-            },
-            "dominantHemisphere": "South",
-            "interpretation": "More of your counted placements sit above the horizon."
-          },
-          "description": "Shows where your chart’s placements gather, highlighting themes of independence, relationships, private life, and public contribution."
-        }
-      }
-    },
     "aspects": [
       {
         "point1": {
@@ -997,21 +904,93 @@
           "symbol": "☉"
         },
         "point2": {
-          "id": "moon",
-          "name": "Moon",
-          "symbol": "☽"
+          "id": "mars",
+          "name": "Mars",
+          "symbol": "♂"
         },
         "aspect": {
-          "type": "square",
-          "name": "Square",
-          "symbol": "□",
-          "angle": 90
+          "type": "trine",
+          "name": "Trine",
+          "symbol": "△",
+          "angle": 120
         },
-        "orb": 6.06,
-        "deviation": 6.06,
+        "orb": 5.31,
+        "deviation": 5.31,
         "interpretation": {
-          "description": "A square describes friction between two sets of needs, impulses or priorities. The tension can encourage action and development, especially when both sides are acknowledged rather than forcing one to silence the other.",
-          "meaning": "What you want to express can conflict with what helps you feel secure. Making room for both ambition and emotional needs reduces the pressure to choose one."
+          "description": "A trine describes an easier relationship between two planets or points. Their themes can support one another with less friction, although a comfortable pattern still benefits from attention, choice and practical use.",
+          "meaning": "Purpose and initiative tend to work together. Acting on your priorities can feel straightforward, though confidence is most useful when paired with consideration for others."
+        }
+      },
+      {
+        "point1": {
+          "id": "sun",
+          "name": "Sun",
+          "symbol": "☉"
+        },
+        "point2": {
+          "id": "uranus",
+          "name": "Uranus",
+          "symbol": "♅"
+        },
+        "aspect": {
+          "type": "sextile",
+          "name": "Sextile",
+          "symbol": "⚹",
+          "angle": 60
+        },
+        "orb": 5.52,
+        "deviation": 5.52,
+        "interpretation": {
+          "description": "A sextile describes an opening for cooperation between two planets or points. Deliberate participation, curiosity and practical action help turn this potential into a useful skill, connection or opportunity.",
+          "meaning": "Trying a different approach can reveal a more authentic way to express yourself. Small experiments create room for originality without requiring you to overturn everything at once."
+        }
+      },
+      {
+        "point1": {
+          "id": "sun",
+          "name": "Sun",
+          "symbol": "☉"
+        },
+        "point2": {
+          "id": "neptune",
+          "name": "Neptune",
+          "symbol": "♆"
+        },
+        "aspect": {
+          "type": "sextile",
+          "name": "Sextile",
+          "symbol": "⚹",
+          "angle": 60
+        },
+        "orb": 3.87,
+        "deviation": 3.87,
+        "interpretation": {
+          "description": "A sextile describes an opening for cooperation between two planets or points. Deliberate participation, curiosity and practical action help turn this potential into a useful skill, connection or opportunity.",
+          "meaning": "Creative practice and compassionate involvement can help you express what matters to you. Giving an ideal a practical form brings inspiration into everyday choices."
+        }
+      },
+      {
+        "point1": {
+          "id": "sun",
+          "name": "Sun",
+          "symbol": "☉"
+        },
+        "point2": {
+          "id": "pluto",
+          "name": "Pluto",
+          "symbol": "♇"
+        },
+        "aspect": {
+          "type": "conjunction",
+          "name": "Conjunction",
+          "symbol": "☌",
+          "angle": 0
+        },
+        "orb": 2.15,
+        "deviation": 2.15,
+        "interpretation": {
+          "description": "A conjunction brings two planets or points close together in zodiacal longitude. Their themes become closely linked, creating concentration and emphasis. This can be supportive, demanding or both, depending on the pair and the rest of the chart.",
+          "meaning": "Personal purpose is closely connected with depth, influence and meaningful change. Examining motives helps determination support self-understanding without making control the condition for confidence."
         }
       },
       {
@@ -1021,21 +1000,21 @@
           "symbol": "☽"
         },
         "point2": {
-          "id": "uranus",
-          "name": "Uranus",
-          "symbol": "♅"
+          "id": "saturn",
+          "name": "Saturn",
+          "symbol": "♄"
         },
         "aspect": {
-          "type": "square",
-          "name": "Square",
-          "symbol": "□",
-          "angle": 90
+          "type": "trine",
+          "name": "Trine",
+          "symbol": "△",
+          "angle": 120
         },
-        "orb": 6.81,
-        "deviation": 6.81,
+        "orb": 7.35,
+        "deviation": 7.35,
         "interpretation": {
-          "description": "A square describes friction between two sets of needs, impulses or priorities. The tension can encourage action and development, especially when both sides are acknowledged rather than forcing one to silence the other.",
-          "meaning": "Familiar emotional patterns can clash with a need for space or change. Flexible routines and clear requests help you seek freedom without abruptly withdrawing from sources of support."
+          "description": "A trine describes an easier relationship between two planets or points. Their themes can support one another with less friction, although a comfortable pattern still benefits from attention, choice and practical use.",
+          "meaning": "Emotional needs can work comfortably with patience and dependable habits. Consistency may feel reassuring, while allowing vulnerability keeps self-reliance from turning into a rule against receiving help."
         }
       },
       {
@@ -1045,30 +1024,6 @@
           "symbol": "☿"
         },
         "point2": {
-          "id": "mars",
-          "name": "Mars",
-          "symbol": "♂"
-        },
-        "aspect": {
-          "type": "sextile",
-          "name": "Sextile",
-          "symbol": "⚹",
-          "angle": 60
-        },
-        "orb": 4.14,
-        "deviation": 4.14,
-        "interpretation": {
-          "description": "A sextile describes an opening for cooperation between two planets or points. Deliberate participation, curiosity and practical action help turn this potential into a useful skill, connection or opportunity.",
-          "meaning": "A clear conversation can turn an idea into action. Choosing one practical next step helps mental energy become useful without requiring certainty about the whole plan."
-        }
-      },
-      {
-        "point1": {
-          "id": "venus",
-          "name": "Venus",
-          "symbol": "♀"
-        },
-        "point2": {
           "id": "jupiter",
           "name": "Jupiter",
           "symbol": "♃"
@@ -1079,18 +1034,18 @@
           "symbol": "⚹",
           "angle": 60
         },
-        "orb": 4.02,
-        "deviation": 4.02,
+        "orb": 1.62,
+        "deviation": 1.62,
         "interpretation": {
           "description": "A sextile describes an opening for cooperation between two planets or points. Deliberate participation, curiosity and practical action help turn this potential into a useful skill, connection or opportunity.",
-          "meaning": "Shared learning or an enjoyable invitation can widen your social world. Choosing an opportunity that fits your values helps generosity create connection without exceeding your means."
+          "meaning": "Study and open discussion can connect a practical question with a wider understanding. Following up an interesting idea helps curiosity become knowledge you can actually use."
         }
       },
       {
         "point1": {
-          "id": "venus",
-          "name": "Venus",
-          "symbol": "♀"
+          "id": "mercury",
+          "name": "Mercury",
+          "symbol": "☿"
         },
         "point2": {
           "id": "saturn",
@@ -1098,47 +1053,23 @@
           "symbol": "♄"
         },
         "aspect": {
-          "type": "trine",
-          "name": "Trine",
-          "symbol": "△",
-          "angle": 120
+          "type": "sextile",
+          "name": "Sextile",
+          "symbol": "⚹",
+          "angle": 60
         },
-        "orb": 3.8,
-        "deviation": 3.8,
+        "orb": 4.22,
+        "deviation": 4.22,
         "interpretation": {
-          "description": "A trine describes an easier relationship between two planets or points. Their themes can support one another with less friction, although a comfortable pattern still benefits from attention, choice and practical use.",
-          "meaning": "Affection and commitment can support each other comfortably. Dependability may feel attractive, while warmth and play help a lasting bond remain more than a reliable arrangement."
+          "description": "A sextile describes an opening for cooperation between two planets or points. Deliberate participation, curiosity and practical action help turn this potential into a useful skill, connection or opportunity.",
+          "meaning": "Focused study or a practical framework can strengthen an idea. Breaking a question into manageable parts helps patience produce understanding without turning preparation into endless delay."
         }
       },
       {
         "point1": {
-          "id": "venus",
-          "name": "Venus",
-          "symbol": "♀"
-        },
-        "point2": {
-          "id": "neptune",
-          "name": "Neptune",
-          "symbol": "♆"
-        },
-        "aspect": {
-          "type": "trine",
-          "name": "Trine",
-          "symbol": "△",
-          "angle": 120
-        },
-        "orb": 6.47,
-        "deviation": 6.47,
-        "interpretation": {
-          "description": "A trine describes an easier relationship between two planets or points. Their themes can support one another with less friction, although a comfortable pattern still benefits from attention, choice and practical use.",
-          "meaning": "Imagination and appreciation can enrich love and creativity. Tenderness or artistic sensitivity may feel natural, while clear expectations keep an ideal from replacing genuine knowledge of another person."
-        }
-      },
-      {
-        "point1": {
-          "id": "venus",
-          "name": "Venus",
-          "symbol": "♀"
+          "id": "mars",
+          "name": "Mars",
+          "symbol": "♂"
         },
         "point2": {
           "id": "pluto",
@@ -1146,88 +1077,16 @@
           "symbol": "♇"
         },
         "aspect": {
-          "type": "opposition",
-          "name": "Opposition",
-          "symbol": "☍",
-          "angle": 180
+          "type": "trine",
+          "name": "Trine",
+          "symbol": "△",
+          "angle": 120
         },
-        "orb": 4.78,
-        "deviation": 4.78,
+        "orb": 3.16,
+        "deviation": 3.16,
         "interpretation": {
-          "description": "An opposition brings two contrasting themes into focus. They may feel like competing needs or appear through relationships. Recognising both perspectives helps create balance without assuming that one side must defeat the other.",
-          "meaning": "Relationships may expose a pull between affection and control. Mutual agency and clear boundaries help you distinguish deep connection from pressure to prove love through surrender or constant reassurance."
-        }
-      },
-      {
-        "point1": {
-          "id": "mars",
-          "name": "Mars",
-          "symbol": "♂"
-        },
-        "point2": {
-          "id": "jupiter",
-          "name": "Jupiter",
-          "symbol": "♃"
-        },
-        "aspect": {
-          "type": "square",
-          "name": "Square",
-          "symbol": "□",
-          "angle": 90
-        },
-        "orb": 4.26,
-        "deviation": 4.26,
-        "interpretation": {
-          "description": "A square describes friction between two sets of needs, impulses or priorities. The tension can encourage action and development, especially when both sides are acknowledged rather than forcing one to silence the other.",
-          "meaning": "Enthusiasm can push effort beyond realistic limits. Choosing a clear target and checking capacity helps courage become effective action rather than a series of oversized commitments."
-        }
-      },
-      {
-        "point1": {
-          "id": "mars",
-          "name": "Mars",
-          "symbol": "♂"
-        },
-        "point2": {
-          "id": "uranus",
-          "name": "Uranus",
-          "symbol": "♅"
-        },
-        "aspect": {
-          "type": "square",
-          "name": "Square",
-          "symbol": "□",
-          "angle": 90
-        },
-        "orb": 3.76,
-        "deviation": 3.76,
-        "interpretation": {
-          "description": "A square describes friction between two sets of needs, impulses or priorities. The tension can encourage action and development, especially when both sides are acknowledged rather than forcing one to silence the other.",
-          "meaning": "The urge for freedom can trigger abrupt action or impatience with limits. Deliberate experiments help you make changes without treating every restriction as something that must be broken immediately."
-        }
-      },
-      {
-        "point1": {
-          "id": "mars",
-          "name": "Mars",
-          "symbol": "♂"
-        },
-        "point2": {
-          "id": "neptune",
-          "name": "Neptune",
-          "symbol": "♆"
-        },
-        "aspect": {
-          "type": "square",
-          "name": "Square",
-          "symbol": "□",
-          "angle": 90
-        },
-        "orb": 1.81,
-        "deviation": 1.81,
-        "interpretation": {
-          "description": "A square describes friction between two sets of needs, impulses or priorities. The tension can encourage action and development, especially when both sides are acknowledged rather than forcing one to silence the other.",
-          "meaning": "Motivation may become scattered when the goal is unclear or idealised. Specific tasks and honest limits help effort serve a meaningful vision without depending on constant inspiration."
+          "description": "A trine describes an easier relationship between two planets or points. Their themes can support one another with less friction, although a comfortable pattern still benefits from attention, choice and practical use.",
+          "meaning": "Drive and sustained focus can reinforce one another. Demanding projects may hold your attention, while respect for limits helps determination remain constructive rather than all-consuming."
         }
       },
       {
@@ -1242,64 +1101,16 @@
           "symbol": "♄"
         },
         "aspect": {
-          "type": "opposition",
-          "name": "Opposition",
-          "symbol": "☍",
-          "angle": 180
-        },
-        "orb": 7.82,
-        "deviation": 7.82,
-        "interpretation": {
-          "description": "An opposition brings two contrasting themes into focus. They may feel like competing needs or appear through relationships. Recognising both perspectives helps create balance without assuming that one side must defeat the other.",
-          "meaning": "A desire to expand may feel opposed by duty, limits or fear of overreaching. Comparing possibilities with capacity helps you choose growth that neither dismisses constraints nor treats them as permanent barriers."
-        }
-      },
-      {
-        "point1": {
-          "id": "jupiter",
-          "name": "Jupiter",
-          "symbol": "♃"
-        },
-        "point2": {
-          "id": "neptune",
-          "name": "Neptune",
-          "symbol": "♆"
-        },
-        "aspect": {
-          "type": "opposition",
-          "name": "Opposition",
-          "symbol": "☍",
-          "angle": 180
-        },
-        "orb": 2.45,
-        "deviation": 2.45,
-        "interpretation": {
-          "description": "An opposition brings two contrasting themes into focus. They may feel like competing needs or appear through relationships. Recognising both perspectives helps create balance without assuming that one side must defeat the other.",
-          "meaning": "Broad beliefs may compete with an idealised vision or longing for certainty. Checking claims and accepting unanswered questions helps faith or imagination coexist with sound judgement."
-        }
-      },
-      {
-        "point1": {
-          "id": "jupiter",
-          "name": "Jupiter",
-          "symbol": "♃"
-        },
-        "point2": {
-          "id": "pluto",
-          "name": "Pluto",
-          "symbol": "♇"
-        },
-        "aspect": {
           "type": "trine",
           "name": "Trine",
           "symbol": "△",
           "angle": 120
         },
-        "orb": 0.76,
-        "deviation": 0.76,
+        "orb": 5.84,
+        "deviation": 5.84,
         "interpretation": {
           "description": "A trine describes an easier relationship between two planets or points. Their themes can support one another with less friction, although a comfortable pattern still benefits from attention, choice and practical use.",
-          "meaning": "A broad perspective can work with depth and sustained commitment. Meaningful study or large projects may benefit, while humility keeps influence from becoming certainty about everyone else's path."
+          "meaning": "Possibility and practical limits can work comfortably together. Patient planning may support meaningful growth, while periodic review keeps a reliable approach open to new opportunities."
         }
       },
       {
@@ -1319,194 +1130,167 @@
           "symbol": "☌",
           "angle": 0
         },
-        "orb": 5.57,
-        "deviation": 5.57,
+        "orb": 1.65,
+        "deviation": 1.65,
         "interpretation": {
           "description": "A conjunction brings two planets or points close together in zodiacal longitude. Their themes become closely linked, creating concentration and emphasis. This can be supportive, demanding or both, depending on the pair and the rest of the chart.",
           "meaning": "This generational conjunction links experimentation with collective imagination and ideals. Its personal relevance depends on houses and close contacts, which show where a new approach may give a vision practical expression."
-        }
-      },
-      {
-        "point1": {
-          "id": "neptune",
-          "name": "Neptune",
-          "symbol": "♆"
-        },
-        "point2": {
-          "id": "pluto",
-          "name": "Pluto",
-          "symbol": "♇"
-        },
-        "aspect": {
-          "type": "sextile",
-          "name": "Sextile",
-          "symbol": "⚹",
-          "angle": 60
-        },
-        "orb": 1.69,
-        "deviation": 1.69,
-        "interpretation": {
-          "description": "A sextile describes an opening for cooperation between two planets or points. Deliberate participation, curiosity and practical action help turn this potential into a useful skill, connection or opportunity.",
-          "meaning": "This long-lasting generational aspect offers cooperation between collective ideals and deeper change. It becomes more personally relevant through houses and close contacts with faster planets or chart angles."
         }
       }
     ],
     "patterns": [
       {
-        "id": "t_square:mars:jupiter:neptune",
-        "type": "T_SQUARE",
-        "modality": "CARDINAL",
-        "weight": 104.09,
-        "apex": {
-          "id": "mars",
-          "displayName": "Mars",
-          "sign": "Aries"
-        },
-        "oppositionAxis": [
+        "id": "grand_trine:mars:midheaven:sun",
+        "type": "GRAND_TRINE",
+        "modality": "MIXED",
+        "weight": 97.32,
+        "apex": null,
+        "oppositionAxis": [],
+        "pointGroups": [
           {
+            "role": "MEMBER",
             "primary": {
-              "id": "jupiter",
-              "displayName": "Jupiter",
-              "sign": "Cancer"
+              "id": "sun",
+              "displayName": "Sun",
+              "sign": "Scorpio"
             },
             "supportingPoints": [
               {
-                "id": "chiron",
-                "displayName": "Chiron",
-                "sign": "Cancer"
+                "id": "pluto",
+                "displayName": "Pluto",
+                "sign": "Scorpio"
               }
             ]
           },
           {
-            "primary": {
-              "id": "neptune",
-              "displayName": "Neptune",
-              "sign": "Capricorn"
-            },
-            "supportingPoints": [
-              {
-                "id": "uranus",
-                "displayName": "Uranus",
-                "sign": "Capricorn"
-              }
-            ]
-          }
-        ],
-        "pointGroups": [
-          {
-            "role": "APEX",
+            "role": "MEMBER",
             "primary": {
               "id": "mars",
               "displayName": "Mars",
-              "sign": "Aries"
+              "sign": "Cancer"
             },
             "supportingPoints": []
           },
           {
-            "role": "AXIS",
+            "role": "MEMBER",
             "primary": {
-              "id": "jupiter",
-              "displayName": "Jupiter",
-              "sign": "Cancer"
+              "id": "midheaven",
+              "displayName": "Midheaven",
+              "sign": "Pisces"
             },
-            "supportingPoints": [
-              {
-                "id": "chiron",
-                "displayName": "Chiron",
-                "sign": "Cancer"
-              }
-            ]
-          },
-          {
-            "role": "AXIS",
-            "primary": {
-              "id": "neptune",
-              "displayName": "Neptune",
-              "sign": "Capricorn"
-            },
-            "supportingPoints": [
-              {
-                "id": "uranus",
-                "displayName": "Uranus",
-                "sign": "Capricorn"
-              }
-            ]
+            "supportingPoints": []
           }
         ],
         "participatingAspectIds": [
-          "jupiter-square-mars",
-          "mars-square-neptune",
-          "jupiter-opposition-neptune"
+          "mars-trine-sun",
+          "midheaven-trine-sun",
+          "mars-trine-midheaven"
         ],
         "participatingAspects": [
           {
-            "id": "jupiter-square-mars",
+            "id": "mars-trine-sun",
+            "point1": {
+              "id": "sun",
+              "displayName": "Sun",
+              "sign": "Scorpio"
+            },
+            "point2": {
+              "id": "mars",
+              "displayName": "Mars",
+              "sign": "Cancer"
+            },
+            "type": "trine",
+            "angle": 120,
+            "orb": 5.32
+          },
+          {
+            "id": "midheaven-trine-sun",
+            "point1": {
+              "id": "sun",
+              "displayName": "Sun",
+              "sign": "Scorpio"
+            },
+            "point2": {
+              "id": "midheaven",
+              "displayName": "Midheaven",
+              "sign": "Pisces"
+            },
+            "type": "trine",
+            "angle": 120,
+            "orb": 1.24
+          },
+          {
+            "id": "mars-trine-midheaven",
             "point1": {
               "id": "mars",
               "displayName": "Mars",
-              "sign": "Aries"
-            },
-            "point2": {
-              "id": "jupiter",
-              "displayName": "Jupiter",
-              "sign": "Cancer"
-            },
-            "type": "square",
-            "angle": 90,
-            "orb": 4.26
-          },
-          {
-            "id": "mars-square-neptune",
-            "point1": {
-              "id": "mars",
-              "displayName": "Mars",
-              "sign": "Aries"
-            },
-            "point2": {
-              "id": "neptune",
-              "displayName": "Neptune",
-              "sign": "Capricorn"
-            },
-            "type": "square",
-            "angle": 90,
-            "orb": 1.8
-          },
-          {
-            "id": "jupiter-opposition-neptune",
-            "point1": {
-              "id": "jupiter",
-              "displayName": "Jupiter",
               "sign": "Cancer"
             },
             "point2": {
-              "id": "neptune",
-              "displayName": "Neptune",
-              "sign": "Capricorn"
+              "id": "midheaven",
+              "displayName": "Midheaven",
+              "sign": "Pisces"
             },
-            "type": "opposition",
-            "angle": 180,
-            "orb": 2.46
+            "type": "trine",
+            "angle": 120,
+            "orb": 4.08
           }
         ],
-        "emptyLeg": {
-          "longitude": 191.88,
-          "sign": "Libra",
-          "degree": 11.88
-        },
+        "emptyLeg": null,
         "interpretation": {
-          "title": "Cardinal T-Square",
-          "summary": "This Cardinal T-square creates a strong need for movement, initiative and decisive action. Its tension repeatedly calls the individual to begin, lead and turn conflict into purposeful momentum.",
-          "apexFocus": "Mars becomes the focal point of the pattern, directing its pressure into action, desire, courage and the assertion of personal will.",
-          "challenge": "The cardinal nature of this pattern emphasizes initiation, leadership and the drive to take action. The urge to act can produce impatience, competing priorities or a cycle of beginning new battles before earlier tensions have been resolved.",
-          "resolution": "Balance develops through cooperation, fairness and the ability to consider another perspective without abandoning oneself. The path toward balance unfolds through self-worth, material stability and a more grounded relationship with personal resources. Building security from within gives the pattern a steadier foundation.",
+          "title": "Grand Trine",
+          "summary": "Three points form a flowing circuit of trines, creating an ease that becomes most valuable when used deliberately.",
+          "apexFocus": "The pattern's gifts can feel natural; conscious participation turns ease into a developed strength.",
+          "challenge": "Natural ease can become passive or underused when it is assumed rather than developed.",
+          "resolution": "Choose practical outlets that ask this natural ability to participate, practise and produce something tangible.",
           "actionSteps": [
-            "Give the pressure a deliberate physical or practical outlet before acting impulsively.",
-            "Pause before beginning something new and finish one existing priority first.",
-            "Practise cooperation, fairness, and considered perspective through self-worth, money, and personal resources."
+            "Name the ability that comes most naturally here instead of assuming everyone finds it equally easy.",
+            "Give that ability one concrete purpose, project, or relationship in which it can be actively used.",
+            "Choose a manageable challenge that keeps this natural flow from becoming passive or underused."
           ]
         },
-        "patternDisplayName": "♂ Mars · ♃ Jupiter · ♆ Neptune"
+        "patternDisplayName": "☉ Sun · ♂ Mars · MC Midheaven"
       }
-    ]
+    ],
+    "aggregates": {
+      "dominantPlanet": "Moon",
+      "dominantPlanetDescription": "Intuitive, sensitive, moody, nurturing, deeply connected to emotions and home.",
+      "dominantElement": "Water",
+      "dominantElementDescription": "Emotional, intuitive, sensitive, receptive",
+      "modality": "Cardinal",
+      "modalityDescription": "Initiating, leading, starting new things"
+    },
+    "interpretationText": {
+      "opening": "You're invited to explore your inner world, where your passions and values intersect. Take a moment to breathe in the warmth of this invitation, and let's dive into the themes that emerge from your natal chart.",
+      "coreStrengths": {
+        "paragraphs": [
+          "Your natural talents shine in the areas where you care deeply, often with a sense of curiosity and playfulness. You might be drawn to creative pursuits, intellectual explorations, or activities that bring people together.",
+          "Your gifts are rooted in your ability to connect with others, to listen, and to understand their perspectives. This empathetic nature can be a powerful catalyst for building strong relationships and fostering a sense of community."
+        ],
+        "reflectionQuestion": "What activities or hobbies bring you a sense of joy and connection to others?"
+      },
+      "growthOpportunities": {
+        "paragraphs": [
+          "You may find yourself navigating tensions between your desire for independence and your need for connection. This inner dialogue can be a rich source of growth, as you learn to balance your individuality with your capacity for empathy and understanding.",
+          "Your drive for action can sometimes be at odds with your need for rest and relaxation. By acknowledging and honoring these opposing forces, you can cultivate a more harmonious relationship with your inner rhythms."
+        ],
+        "reflectionQuestion": "How do you typically handle situations where you feel torn between independence and connection?"
+      },
+      "lifePurpose": {
+        "paragraphs": [
+          "Your values and passions are deeply connected to your desire for meaning and purpose. You might be drawn to activities that promote learning, growth, and exploration, and that allow you to make a positive impact on the world around you.",
+          "Your sense of purpose is rooted in your ability to bring people together, to facilitate connection and understanding, and to foster a sense of community and belonging."
+        ],
+        "reflectionQuestion": "What activities or pursuits feel most aligned with your sense of purpose and meaning?"
+      },
+      "soulDirection": {
+        "paragraphs": [
+          "Your inner direction for growth is guided by your desire for authenticity and self-expression. You might be drawn to activities that allow you to tap into your creativity, to explore your individuality, and to cultivate a sense of inner truth.",
+          "Your soul direction is rooted in your need for connection and understanding, and your desire to make a positive impact on the world around you."
+        ],
+        "reflectionQuestion": "What activities or pursuits feel most authentic and true to your inner voice?"
+      },
+      "closing": "As you continue on your journey, remember that your strengths and themes are not fixed or absolute. They are dynamic and ever-evolving, and they will continue to unfold and reveal themselves in new and unexpected ways."
+    }
   }
 }

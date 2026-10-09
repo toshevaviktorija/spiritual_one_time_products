@@ -1,0 +1,48 @@
+{% extends 'studio/base.html' %}
+{% load static %}
+{% block title %}{% if free_redemption %}Redeem Your Natal Chart{% else %}Get Your Natal Chart{% endif %} · Venastella{% endblock %}
+{% block content %}
+<section class="form-page">
+  <p class="eyebrow">{% if free_redemption %}A GIFT FROM VENASTELLA{% else %}YOUR NATAL CHART{% endif %}</p>
+  <h1>{% if free_redemption %}Redeem Your Natal Chart{% else %}Get Your Natal Chart{% endif %}</h1>
+  <p class="lede">Tell us about the moment you were born.</p>
+  {% if free_redemption %}
+    <p>Redeem your complimentary natal chart. Leave your birth details and email address so we can prepare your report and email it to you personally.</p>
+    <p>No payment is required.</p>
+  {% elif payments_enabled %}
+    <p class="price">£39 GBP · one-time payment</p>
+    <p>{% if payment_mode == 'demo' %}Try the local demo checkout. No money will be charged.{% elif payment_mode == 'test' %}Stripe test Checkout is enabled. Use a test card; no money will be charged.{% else %}After entering your details, continue to secure Stripe Checkout.{% endif %}</p>
+  {% else %}
+    <p>Payments are currently disabled. You can submit your birth details without a charge. This saves a request for the studio; it does not generate a report automatically.</p>
+  {% endif %}
+  {% if not free_redemption %}<p class="small">{{ refund_terms }}</p>{% endif %}
+  <form method="post">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+    {% for field in form %}
+      {% if field.name == 'city' %}
+        <div id="birth-location-search" class="location-search">
+          <label for="birth-place-search">Birth town or city</label>
+          <div id="birth-place-widget"></div>
+          <p id="birth-location-status" class="small" role="status">{% if google_places_config %}{% if form.city.value %}Selected: {{ form.city.value }}. Search again to change your birth town.{% else %}Start typing and select your birth town from the suggestions.{% endif %}{% else %}Location search is temporarily unavailable. Please try again later.{% endif %}</p>
+        </div>
+      {% endif %}
+      {% if field.is_hidden %}
+        {{ field }}{{ field.errors }}
+      {% elif field.name == 'unknown_birth_time' or field.name == 'early_delivery_consent' %}
+        <p class="checkbox-row">{{ field }}{{ field.label_tag }}{{ field.errors }}</p>
+      {% else %}
+        <p>{{ field.errors }}{{ field.label_tag }}{{ field }}{% if field.help_text %}<span class="small helptext">{{ field.help_text }}</span>{% endif %}</p>
+      {% endif %}
+    {% endfor %}
+    <p class="small">Birth time is optional. If you leave it blank, we use 12:00:00. An unknown birth time can affect the accuracy of your Ascendant and houses.</p>
+    <button class="button" type="submit" {% if not google_places_config %}disabled{% endif %}>{% if free_redemption %}Redeem my free natal chart{% else %}Checkout{% endif %} ↗</button>
+    {% include "studio/data_notice.html" %}
+  </form>
+</section>
+<script type="module" src="{% static 'studio/birth-form.js' %}"></script>
+{% if google_places_config %}
+  {{ google_places_config|json_script:'google-places-config' }}
+  <script type="module" src="{% static 'studio/places.js' %}"></script>
+{% endif %}
+{% endblock %}

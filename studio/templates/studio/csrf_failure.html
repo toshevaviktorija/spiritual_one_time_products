@@ -1,0 +1,2 @@
+{% extends 'studio/base.html' %}{% block title %}Please refresh your form · Venastella{% endblock %}
+{% block content %}<section class="form-page"><h1>Your form needs a fresh start.</h1><p>Your security token has expired or changed. This can happen after signing in in another tab.</p><p>This submission was not saved. Return to the form, refresh it, and try again.</p><a class="button" href="{{ retry_path }}">Return to the form ↗</a></section>{% endblock %}

@@ -1,0 +1,8 @@
+{% extends 'admin/studio/workflow_base.html' %}{% block workflow %}
+<h1>A little starlight, delivered</h1><p>To: <strong>{{ birth_request }}</strong> · {{ birth_request.email }}</p><p>From: {{ sender|default:'Set RESEND_FROM_EMAIL to your verified sender address' }}</p>
+{% if birth_request.report_sent %}<p>A report has already been marked as sent for this customer. Check the history before sending another.</p>{% endif %}
+<p><a class="action" href="{% url 'admin:studio_report_generate' %}?request={{ birth_request.pk }}">Generate a new PDF</a> <a href="{% url 'admin:studio_birthrequest_change' birth_request.pk %}">View request / correct email</a></p>
+<p>Select the PDF belonging to this request, write your message, then preview the email before sending.</p>
+<form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit">Preview email and attachment ✧</button></form>
+{% if history %}<h2>Email history</h2>{% for email in history %}<p><a href="{% url 'admin:studio_chartemail_preview' email.pk %}">{{ email.subject }}</a> · {{ email.recipient }} · Submitted {{ email.submitted_at }}</p>{% endfor %}{% endif %}
+{% endblock %}

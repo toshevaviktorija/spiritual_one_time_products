@@ -6,7 +6,7 @@ from math import isfinite
 from reportlab.lib.units import mm
 from reportlab.platypus import KeepTogether, PageBreak, Paragraph, Spacer, Table, TableStyle
 
-from .flowables import color, translucent_color
+from .flowables import PanelTable, panel_box_style
 from .utilities.formatting import xml_text
 from .utilities.page_heading import page_heading
 
@@ -70,12 +70,12 @@ class AspectSection:
                      Paragraph(heading, self.styles['aspect_group'])]
             description = next((i['interpretation'].get('description') for i in items if i['interpretation'].get('description')), '')
             if description:
-                panel = Table([[Paragraph(xml_text(description), self.styles['aspect_description'])]], colWidths=[self.width])
+                panel = PanelTable([[Paragraph(xml_text(description), self.styles['aspect_description'])]], colWidths=[self.width])
                 panel.setStyle(TableStyle([
-                    ('BACKGROUND', (0, 0), (-1, -1), translucent_color(self.palette['panel_surface'], 0.52)),
-                    ('LINEBEFORE', (0, 0), (0, -1), 1, color(self.palette['gold'])),
+                    *panel_box_style(self.palette),
+                    ("CORNERARTWORK", self.palette["corner_artwork_bottom_right"], 13 * mm, "bottom_right"),
                     ('LEFTPADDING', (0, 0), (-1, -1), 4 * mm),
-                    ('RIGHTPADDING', (0, 0), (-1, -1), 4 * mm),
+                    ('RIGHTPADDING', (0, 0), (-1, -1), 8 * mm),
                     ('TOPPADDING', (0, 0), (-1, -1), 4 * mm),
                     ('BOTTOMPADDING', (0, 0), (-1, -1), 4 * mm),
                 ]))

@@ -1,0 +1,11 @@
+{% extends 'admin/studio/workflow_base.html' %}{% block workflow %}
+<h1>Preview your chart email</h1><p>To: <strong>{{ draft.recipient }}</strong><br>From: {{ draft.sender|default:'Sender not configured' }}{% if draft.reply_to %}<br>Replies to: {{ draft.reply_to }}{% endif %}<br>Subject: {{ draft.subject }}</p>
+{% if not draft.submitted_at %}<p>Attachment: {{ draft.report }} · <a class="action" href="{% url 'admin:studio_report_download' draft.report_id %}">Download PDF to inspect</a></p>
+<iframe class="email-preview" title="Venastella email preview" sandbox srcdoc="{{ email_preview }}"></iframe>{% endif %}
+{% if draft.submitted_at %}<p>Email submitted to Resend on {{ draft.submitted_at }}. Provider reference: {{ draft.provider_id }}. Check Resend for delivery status. The website PDF is removed after successful submission; email body text is cleared from the database.</p>
+{% else %}
+{% if not configured %}<p>Sending needs RESEND_API_KEY and a verified RESEND_FROM_EMAIL. After configuring them, return to Compose email to create a fresh preview.</p>{% endif %}
+<form method="post">{% csrf_token %}{{ form.as_p }}<button type="submit" {% if not configured %}disabled{% endif %}>Send email with PDF attached ✧</button></form>
+{% endif %}
+<p><a href="{% url 'admin:studio_birthrequest_email' draft.birth_request_id %}">Return to composer</a></p>
+{% endblock %}

@@ -9,7 +9,7 @@ from reportlab.pdfbase import pdfmetrics
 from reportlab.lib import colors
 from reportlab.graphics import renderPDF
 from reportlab.graphics.shapes import Drawing
-from reportlab.platypus import Flowable, Table
+from reportlab.platypus import Flowable, Table, TableStyle
 
 from .constants import SIGN_COLORS, SIGN_NAMES
 
@@ -21,6 +21,90 @@ def color(value: str):
 def translucent_color(value: str, opacity: float):
     base = colors.HexColor(value)
     return colors.Color(base.red, base.green, base.blue, alpha=opacity)
+
+
+def panel_box_style(palette):
+    """Shared rounded gold frame and translucent fill for report text boxes."""
+    return [
+        ("BACKGROUND", (0, 0), (-1, -1), translucent_color(palette["panel_surface"], 0.52)),
+        ("BORDERGRADIENT", palette["border_gradient_colors"], palette["border_gradient_locations"]),
+        ("ROUNDEDCORNERS", [5, 5, 5, 5]),
+    ]
+
+
+class PanelTable(Table):
+    """A text box with a thin rounded border shaded by a multi-stop gradient."""
+
+    def setStyle(self, style):
+        commands = style.getCommands() if isinstance(style, TableStyle) else style
+        regular = []
+        for command in commands:
+            if command[0] == "BORDERGRADIENT":
+                self.border_gradient = command[1:]
+            elif command[0] == "CORNERARTWORK":
+                self.corner_artwork = command[1:]
+            elif command[0] == "EXTRACORNERARTWORK":
+                self.extra_corner_artwork = command[1:]
+            elif command[0] == "GRADIENTROWS":
+                self.gradient_rows = True
+            elif command[0] == "BORDERWIDTH":
+                self.border_width = command[1]
+            else:
+                regular.append(command)
+        super().setStyle(TableStyle(regular))
+
+    def draw(self):
+        super().draw()
+        if not hasattr(self, "border_gradient"):
+            return
+        canvas = self.canv
+        path = canvas.beginPath()
+
+        def rounded_rect(x, y, width, height, radius):
+            k = 0.55228475 * radius
+            path.moveTo(x + radius, y)
+            path.lineTo(x + width - radius, y)
+            path.curveTo(x + width - radius + k, y, x + width, y + radius - k, x + width, y + radius)
+            path.lineTo(x + width, y + height - radius)
+            path.curveTo(x + width, y + height - radius + k, x + width - radius + k, y + height, x + width - radius, y + height)
+            path.lineTo(x + radius, y + height)
+            path.curveTo(x + radius - k, y + height, x, y + height - radius + k, x, y + height - radius)
+            path.lineTo(x, y + radius)
+            path.curveTo(x, y + radius - k, x + radius - k, y, x + radius, y)
+            path.close()
+
+        rounded_rect(0, 0, self._width, self._height, 5)
+        border_width = getattr(self, "border_width", 0.5)
+        rounded_rect(border_width, border_width, self._width - 2 * border_width,
+                     self._height - 2 * border_width, 5 - border_width)
+        shades, locations = self.border_gradient
+        canvas.saveState()
+        canvas.clipPath(path, stroke=0, fill=0, fillMode=0)
+        canvas.linearGradient(0, self._height, self._width, 0,
+                              [color(shade) for shade in shades], positions=locations)
+        canvas.restoreState()
+        if getattr(self, "gradient_rows", False):
+            for index, y in enumerate(self._rowpositions[1:-1]):
+                thickness = 1.3 if index == 0 else 0.85
+                canvas.saveState()
+                clip = canvas.beginPath()
+                clip.rect(0.5, y - thickness / 2, self._width - 1, thickness)
+                canvas.clipPath(clip, stroke=0, fill=0)
+                canvas.linearGradient(0, y, self._width, y,
+                                      [color(shade) for shade in shades], positions=locations)
+                canvas.restoreState()
+        for ornament in (getattr(self, "corner_artwork", None), getattr(self, "extra_corner_artwork", None)):
+            if ornament is None:
+                continue
+            image, size, *placement = ornament
+            width, height = image.getSize()
+            scale = size * 1.2 / max(width, height)
+            width, height = width * scale, height * scale
+            position = placement[0] if placement else "top_right"
+            y = 0.5 if position.startswith("bottom") else self._height - height - 0.5
+            x = 0.5 if position.endswith("left") else self._width - width - 0.5
+            canvas.drawImage(image, x, y,
+                             width=width, height=height, mask="auto")
 
 
 class ZodiacWheel(Flowable):
@@ -281,6 +365,33 @@ class VectorDrawing(Flowable):
         self.canv.saveState()
         self.canv.translate(x_offset, 0)
         self.canv.scale(scale, scale)
+        renderPDF.draw(self.drawing, self.canv, 0, 0)
+        self.canv.restoreState()
+
+
+class FramedWheel(Flowable):
+    """Center a vector wheel within a transparent ornamental frame."""
+
+    def __init__(self, drawing: Drawing, image, size: float, wheel_size: float):
+        super().__init__()
+        self.drawing, self.image = drawing, image
+        self.width = self.height = size
+        self.wheel_size = wheel_size
+        self.hAlign = "CENTER"
+
+    def draw(self) -> None:
+        image_width, image_height = self.image.getSize()
+        scale = min(self.width / image_width, self.height / image_height)
+        frame_width, frame_height = image_width * scale, image_height * scale
+        self.canv.drawImage(self.image, (self.width - frame_width) / 2,
+                           (self.height - frame_height) / 2,
+                           width=frame_width, height=frame_height, mask="auto")
+        wheel_scale = min(self.wheel_size / self.drawing.width,
+                          self.wheel_size / self.drawing.height)
+        self.canv.saveState()
+        self.canv.translate((self.width - self.drawing.width * wheel_scale) / 2,
+                            (self.height - self.drawing.height * wheel_scale) / 2)
+        self.canv.scale(wheel_scale, wheel_scale)
         renderPDF.draw(self.drawing, self.canv, 0, 0)
         self.canv.restoreState()
 

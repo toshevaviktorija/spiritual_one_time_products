@@ -1,0 +1,6 @@
+{% extends 'admin/studio/workflow_base.html' %}{% block workflow %}
+<h1>Generate a celestial portrait</h1>
+{% if birth_request %}<p>For <strong>{{ birth_request }}</strong> · {{ birth_request.email }}</p><p><a href="{% url 'admin:studio_birthrequest_change' birth_request.pk %}">View birth details</a></p>{% endif %}
+<p>Upload the personalised chart JSON and matching SVG (including .txt files), or paste their contents. The PDF uses your existing Venastella report layout and artwork.</p>
+<form method="post" enctype="multipart/form-data">{% csrf_token %}{{ form.as_p }}<button type="submit">Generate PDF ✧</button></form>
+{% endblock %}

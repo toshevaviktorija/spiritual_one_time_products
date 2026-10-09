@@ -1,0 +1,45 @@
+services:
+  db:
+    image: postgres:17-bookworm
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-venastella}
+      POSTGRES_USER: ${POSTGRES_USER:-venastella}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$$POSTGRES_USER\" -d \"$$POSTGRES_DB\""]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+    restart: unless-stopped
+  web:
+    build: .
+    env_file: .env
+    environment:
+      DATABASE_BACKEND: postgres
+      POSTGRES_HOST: db
+      POSTGRES_PORT: "5432"
+      POSTGRES_DB: ${POSTGRES_DB:-venastella}
+      POSTGRES_USER: ${POSTGRES_USER:-venastella}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+      DJANGO_SECRET_KEY: ${DJANGO_SECRET_KEY:?Set DJANGO_SECRET_KEY in .env}
+      DJANGO_DEBUG: ${DJANGO_DEBUG:-true}
+      PUBLIC_BASE_URL: ${DOCKER_PUBLIC_BASE_URL:-http://127.0.0.1:8001}
+    ports:
+      - "127.0.0.1:${DOCKER_WEB_PORT:-8001}:8000"
+    volumes:
+      - private_reports:/app/private_reports
+    depends_on:
+      db:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/', timeout=5)"]
+      interval: 15s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    restart: unless-stopped
+volumes:
+  postgres_data:
+  private_reports:

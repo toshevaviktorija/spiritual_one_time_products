@@ -10,7 +10,7 @@ from reportlab.lib.units import mm
 from reportlab.platypus import HRFlowable, Paragraph, Spacer, Table, TableStyle
 
 from .constants import HOUSE_SHORT_INFO, PLANET_SYMBOLS, ROMAN_HOUSES, SIGN_NAMES
-from .flowables import ZodiacSignBadge, color, translucent_color
+from .flowables import PanelTable, panel_box_style, ZodiacSignBadge, color
 from .models import ChartPoint
 from .utilities.formatting import xml_text
 
@@ -70,10 +70,10 @@ class HousePattern:
         description = self.meaning.get("description") or self.house.get("description")
         if description is not None and str(description).strip():
             content.extend([Spacer(1, 3 * mm), Paragraph(xml_text(str(description)), self.styles["house_description"])])
-        panel = Table([[content]], colWidths=[self.panel_width], hAlign="CENTER")
+        panel = PanelTable([[content]], colWidths=[self.panel_width], hAlign="CENTER")
         panel.setStyle(TableStyle([
-            ("BACKGROUND", (0, 0), (-1, -1), translucent_color(self.palette["panel_surface"], 0.52)),
-            ("LINEBEFORE", (0, 0), (0, -1), 1.1, color(self.palette["gold"])),
+            *panel_box_style(self.palette),
+            ("CORNERARTWORK", self.palette["corner_artwork"], 16 * mm),
             ("LEFTPADDING", (0, 0), (-1, -1), padding), ("RIGHTPADDING", (0, 0), (-1, -1), padding),
             ("TOPPADDING", (0, 0), (-1, -1), padding), ("BOTTOMPADDING", (0, 0), (-1, -1), padding),
         ]))

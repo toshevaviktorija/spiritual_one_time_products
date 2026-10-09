@@ -1,0 +1,8 @@
+{% extends 'admin/studio/workflow_base.html' %}{% block workflow %}
+<h1>Approve data removal</h1>{% if removal.approved_at %}<p>This removal has already been completed.</p>{% else %}
+<p>Customer: <strong>{{ removal.email }}</strong></p>
+<p>This will permanently remove all birth requests with this email address, associated PDFs, test invoices, chart email records, enquiries, linked reviews/feedback, customer references in sessions and matching admin history. Live invoice snapshots are retained for legally required accounting, without the birth request or chart data. Other customers and staff accounts will remain.</p>
+<p>This action cannot retract delivered emails or downloaded files. Check any separate copies, backups and provider records as part of your removal process. Historical anonymous reviews/feedback have no identity link and cannot be identified automatically.</p>
+<form method="post">{% csrf_token %}<input type="hidden" name="confirm" value="yes"><button type="submit">Approve and permanently remove customer data</button></form>{% endif %}
+<a href="{% url 'admin:studio_dataremovalrequest_changelist' %}">Cancel / return to removal requests</a>
+{% endblock %}

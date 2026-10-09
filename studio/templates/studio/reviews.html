@@ -1,0 +1,47 @@
+{% extends 'studio/base.html' %}{% load static %}
+{% block title %}Reviews · Venastella{% endblock %}
+{% block content %}
+<section class="form-page wide reviews-page">
+  <p class="eyebrow">YOUR EXPERIENCE</p>
+  <h1>Reviews</h1>
+  <p class="lede">Share a review with the community, or send a private note to Venastella.</p>
+  <section aria-labelledby="review-heading" class="review-composer">
+    <h2 id="review-heading">Leave a review</h2>
+    <p>Your rating and words may be published after approval. Please leave out personal details.</p>
+    <form method="post">
+      {% csrf_token %}<input type="hidden" name="submission_type" value="review">
+      {{ review_form.non_field_errors }}
+      <fieldset class="rating-field"><legend>Your rating</legend>{{ review_form.rating.errors }}
+        <div class="star-picker" role="radiogroup" aria-label="Your rating">
+          {% for choice in review_form.rating %}
+          <label class="star-choice" data-rating="{{ forloop.counter }}">
+            {{ choice.tag }}<span class="star-glyph" aria-hidden="true">★</span><span class="sr-only">{{ forloop.counter }} out of 5 stars</span>
+          </label>
+          {% endfor %}
+        </div>
+        <p id="rating-status" class="small" role="status">Choose your stars</p>
+      </fieldset>
+      <p>{{ review_form.text.errors }}{{ review_form.text.label_tag }}{{ review_form.text }}</p>
+      <button class="button" type="submit">Submit review ↗</button>
+    </form>
+  </section>
+  <details id="feedback-panel" class="feedback-panel" {% if feedback_form.errors %}open{% endif %}>
+    <summary class="button secondary-button">Or submit a feedback</summary>
+    <form method="post">
+      {% csrf_token %}<input type="hidden" name="submission_type" value="feedback">
+      <p>Your feedback stays private and is only visible to the Venastella team.</p>
+      {{ feedback_form.non_field_errors }}
+      <p>{{ feedback_form.text.errors }}{{ feedback_form.text.label_tag }}{{ feedback_form.text }}</p>
+      <div class="feedback-actions"><button class="button" type="submit">Submit feedback ↗</button><button class="button secondary-button" id="cancel-feedback" type="button">Cancel</button></div>
+    </form>
+  </details>
+  <section class="published-reviews" aria-labelledby="published-heading">
+    <h2 id="published-heading">Community reviews</h2>
+    {% for review in reviews %}
+      <article class="published-review"><p class="review-stars" aria-label="{{ review.rating }} out of 5 stars">{{ review.stars }}</p><p>{{ review.text|linebreaksbr }}</p><p class="small">{{ review.created_at|date:'j F Y' }}</p></article>
+    {% empty %}<p>There are no reviews yet.</p>{% endfor %}
+    {% if reviews.has_other_pages %}<nav aria-label="Review pages">{% if reviews.has_previous %}<a href="?page={{ reviews.previous_page_number }}">Previous</a>{% endif %}<span>Page {{ reviews.number }} of {{ reviews.paginator.num_pages }}</span>{% if reviews.has_next %}<a href="?page={{ reviews.next_page_number }}">Next</a>{% endif %}</nav>{% endif %}
+  </section>
+</section>
+<script type="module" src="{% static 'studio/reviews.js' %}"></script>
+{% endblock %}

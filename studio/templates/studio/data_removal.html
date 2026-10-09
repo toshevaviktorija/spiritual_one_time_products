@@ -1,0 +1,6 @@
+{% extends 'studio/base.html' %}{% block title %}Remove my data · Venastella{% endblock %}
+{% block content %}<section class="form-page">
+{% if requested %}<h1>Your removal request is received.</h1><p>Your request is waiting for approval by the Venastella team. Once approved, we’ll remove your personal details, associated requests, chart email records and any remaining chart files from this application.</p>
+{% else %}<h1>Request removal of my data</h1><p>Ask the Venastella team to delete your saved name, email address, birth details, associated requests, chart email records and any remaining chart files.</p><p>Your request will be reviewed in our private admin panel. Opening this page does not request deletion.</p><form method="post">{% csrf_token %}<button class="button" type="submit">Request removal of my data</button></form>{% endif %}
+<p class="small">This removes data held by this application. It cannot remove emails already in your mailbox, files you downloaded, or copies held by email/payment providers. You can contact info@venastella.com about those copies.</p>
+<p class="small">Legally required invoice and transaction records are retained for accounting. These contain billing information, not your natal chart or birth details.</p><a href="{% url 'home' %}">Return to Venastella ↗</a></section>{% endblock %}

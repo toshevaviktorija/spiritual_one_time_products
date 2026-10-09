@@ -31,6 +31,8 @@ class NatalChartData:
     premium_aggregates: Mapping[str, Any]
     aspects: tuple[Mapping[str, Any], ...] = ()
     patterns: tuple[Mapping[str, Any], ...] = ()
+    interpretation_text: Mapping[str, Any] | str = ""
+    created_at: str = ""
 
     @classmethod
     def from_file(cls, path: Path) -> "NatalChartData":
@@ -72,6 +74,8 @@ class NatalChartData:
             premium_aggregates=aggregates if isinstance(aggregates, Mapping) else {},
             aspects=tuple(aspects),
             patterns=tuple(patterns),
+            interpretation_text=api_data.get("interpretationText", response.get("interpretationText")) or "",
+            created_at=str(api_data.get("createdAt", response.get("createdAt")) or ""),
         )
 
     @property

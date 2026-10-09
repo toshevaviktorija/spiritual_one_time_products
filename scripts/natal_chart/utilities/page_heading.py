@@ -7,6 +7,7 @@ from .formatting import xml_text
 
 
 def page_heading(text, styles, palette, width):
+    text = text.upper()
     style = styles['title']
     line_width = min(width, pdfmetrics.stringWidth(text, style.fontName, style.fontSize))
     return [Spacer(1, mm), Paragraph(xml_text(text), style), Spacer(1, 2 * mm),

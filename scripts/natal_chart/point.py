@@ -10,7 +10,7 @@ from reportlab.lib.units import mm
 from reportlab.platypus import HRFlowable, Paragraph, Spacer, Table, TableStyle
 
 from .constants import SIGN_NAMES, SIGN_RULERS
-from .flowables import ProfileIcon, ZodiacSignBadge, color, translucent_color
+from .flowables import PanelTable, panel_box_style, ProfileIcon, ZodiacSignBadge, color
 from .utilities.formatting import xml_text
 
 
@@ -120,12 +120,12 @@ class PointPattern:
         if description is not None and str(description).strip():
             description_style = self.styles["point_sign_description_compact"] if self.compact else self.styles["point_sign_description"]
             content.extend([Spacer(1, 1.8 * mm), Paragraph(xml_text(str(description)), description_style)])
-        panel = Table([[content]], colWidths=[self.panel_width], hAlign="CENTER")
+        panel = PanelTable([[content]], colWidths=[self.panel_width], hAlign="CENTER")
         panel.setStyle(TableStyle([
-            ("BACKGROUND", (0, 0), (-1, -1), translucent_color(self.palette["panel_surface"], 0.52)),
-            ("LINEBEFORE", (0, 0), (0, -1), 1.1, color(self.palette["gold"])),
+            *panel_box_style(self.palette),
+            ("CORNERARTWORK", self.palette["corner_artwork"], 11 * mm),
             ("LEFTPADDING", (0, 0), (-1, -1), padding),
-            ("RIGHTPADDING", (0, 0), (-1, -1), padding),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 7 * mm),
             ("TOPPADDING", (0, 0), (-1, -1), padding),
             ("BOTTOMPADDING", (0, 0), (-1, -1), padding),
         ]))
@@ -156,14 +156,13 @@ class PointPattern:
 
     def _intro_panel(self, width: float) -> Table:
         icon_width = 9 * mm
-        intro = Table([[
+        intro = PanelTable([[
             ProfileIcon(self.intro_icon or "speech", 6 * mm, self.palette["gold"]),
             Paragraph(xml_text(self.intro_text or ""), self.styles["point_intro_compact"] if self.compact else self.styles["point_intro"]),
         ]], colWidths=[icon_width, width - icon_width])
         padding = 2.2 * mm if self.compact else 3.2 * mm
         intro.setStyle(TableStyle([
-            ("BACKGROUND", (0, 0), (-1, -1), translucent_color(self.palette["panel_surface"], 0.52)),
-            ("LINEBEFORE", (0, 0), (0, -1), 1.1, color(self.palette["gold"])),
+            *panel_box_style(self.palette),
             ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
             ("LEFTPADDING", (0, 0), (-1, -1), padding),
             ("RIGHTPADDING", (0, 0), (-1, -1), padding),

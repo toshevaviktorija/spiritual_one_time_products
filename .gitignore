@@ -4,3 +4,10 @@
 __pycache__/
 *.py[cod]
 
+
+# Django runtime and secrets
+db.sqlite3
+db.sqlite3-*
+private_reports/
+staticfiles/
+.env

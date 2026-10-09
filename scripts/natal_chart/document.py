@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import datetime
+from zoneinfo import ZoneInfo
 from pathlib import Path
 from typing import Any, Mapping
 
@@ -16,10 +17,11 @@ from reportlab.lib.utils import ImageReader
 from reportlab.graphics import renderPDF
 from reportlab.pdfbase import pdfmetrics
 from reportlab.pdfbase.ttfonts import TTFont
-from reportlab.platypus import BaseDocTemplate, Frame, HRFlowable, KeepTogether, PageBreak, PageTemplate, Paragraph, Spacer, Table, TableStyle
+from reportlab.pdfgen.canvas import Canvas
+from reportlab.platypus import BaseDocTemplate, Frame, HRFlowable, KeepTogether, NextPageTemplate, PageBreak, PageTemplate, Paragraph, Spacer, Table, TableStyle
 
 from .constants import PLANET_SYMBOLS, SIGN_NAMES
-from .flowables import OrnamentColumns, PatternKeywords, RasterArtwork, PercentageBar, ProfileIcon, SparkleBullet, VectorDrawing, color, translucent_color
+from .flowables import PanelTable, panel_box_style, FramedWheel, OrnamentColumns, PatternKeywords, RasterArtwork, PercentageBar, ProfileIcon, SparkleBullet, VectorDrawing, color, translucent_color
 from .aspects import AspectSection
 from .house import HousePattern
 from .models import NatalChartData
@@ -29,6 +31,32 @@ from .utilities.page_heading import page_heading
 from .utilities.svg_chart import prepare_chart
 from .utilities.svg_artwork import load_coloured_svg
 from .utilities.theme import resolve_artwork
+
+
+class NumberedCanvas(Canvas):
+    """Defer page output until the final page count is known."""
+
+    def __init__(self, *args, footer_style: ParagraphStyle, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.footer_style = footer_style
+        self.page_states: list[dict[str, Any]] = []
+
+    def showPage(self) -> None:
+        self.page_states.append(dict(self.__dict__))
+        self._startPage()
+
+    def save(self) -> None:
+        total = len(self.page_states)
+        for state in self.page_states:
+            self.__dict__.update(state)
+            self.saveState()
+            self.setFillColor(self.footer_style.textColor)
+            self.setFont(self.footer_style.fontName, self.footer_style.fontSize)
+            self.drawCentredString(self._pagesize[0] / 2, 8.5 * mm,
+                                   f"Page {self._pageNumber} out of {total}")
+            self.restoreState()
+            super().showPage()
+        super().save()
 
 
 class NatalChartDocument:
@@ -43,6 +71,7 @@ class NatalChartDocument:
         self.symbol_font = self._register_symbol_font()
         self.theme_fonts = self._register_theme_fonts()
         artwork_presets = theme["design_system"]["artwork"]
+        self.palette["panel_border"] = artwork_presets["frame"]["color"]
         separator_preset = artwork_presets[theme["design_system"]["active_separator"]]
         separator_path = resolve_artwork(dict(theme), separator_preset.get("file"))
         frame_preset = artwork_presets["frame"]
@@ -55,12 +84,21 @@ class NatalChartDocument:
         elif frame_path:
             self.frame_drawing = load_coloured_svg(frame_path, frame_preset["color"])
         self.styles = self._make_styles()
+        self.palette["corner_artwork"] = self._tinted_png(
+            resolve_artwork(dict(theme), "assets/ornate_corner.png"),
+            frame_preset["color"], crop=True, mirror=True)
+        self.palette["corner_artwork_bottom_right"] = self._tinted_png(
+            resolve_artwork(dict(theme), "assets/ornate_corner.png"),
+            frame_preset["color"], crop=True, mirror=True, flip_vertical=True)
+        self.palette["corner_artwork_bottom_left"] = self._tinted_png(
+            resolve_artwork(dict(theme), "assets/ornate_corner.png"),
+            frame_preset["color"], crop=True, flip_vertical=True)
         self.pattern_branch = self._tinted_png(resolve_artwork(dict(theme), "assets/branch.png"), frame_preset["color"], crop=True)
         self.pattern_branch_left = self._tinted_png(resolve_artwork(dict(theme), "assets/branch.png"), frame_preset["color"], crop=True, mirror=True)
         self.vertical_separator = self._tinted_png(resolve_artwork(dict(theme), "assets/vertical_separator.png"), frame_preset["color"], crop=True)
 
     @staticmethod
-    def _tinted_png(path: Path, colour: str, *, crop: bool = False, mirror: bool = False) -> ImageReader:
+    def _tinted_png(path: Path, colour: str, *, crop: bool = False, mirror: bool = False, flip_vertical: bool = False) -> ImageReader:
         """Apply the ornament colour through the PNG's original alpha mask."""
         with Image.open(path) as source:
             rgba = source.convert("RGBA")
@@ -70,6 +108,8 @@ class NatalChartDocument:
                 tinted = tinted.crop(tinted.getbbox())
             if mirror:
                 tinted = tinted.transpose(Image.Transpose.FLIP_LEFT_RIGHT)
+            if flip_vertical:
+                tinted = tinted.transpose(Image.Transpose.FLIP_TOP_BOTTOM)
         return ImageReader(tinted)
 
     def _ornate_separator(self, width: float, height: float) -> Any:
@@ -207,13 +247,6 @@ class NatalChartDocument:
         if artwork:
             self._draw_image_cover(canvas, artwork, float(self.theme["artwork"].get("background_opacity", 1)))
         self._ornaments(canvas)
-        footer_style = self.styles["footer"]
-        canvas.saveState()
-        canvas.setFillColor(footer_style.textColor)
-        canvas.setFont(footer_style.fontName, footer_style.fontSize)
-        canvas.drawString(17 * mm, 10.5 * mm, self.data.name)
-        canvas.drawRightString(page_width - 17 * mm, 10.5 * mm, f"{self.theme['labels']['page']} {doc.page}")
-        canvas.restoreState()
 
     def _welcome_page(self, canvas, _doc) -> None:
         page_width, page_height = self.page_size
@@ -228,7 +261,6 @@ class NatalChartDocument:
 
     def _welcome_story(self) -> list[Any]:
         welcome = self.theme["welcome"]
-        first_name = self.data.name.split()[0] if self.data.name.split() else self.data.name
         bullet_rows = []
         for item in welcome["bullets"]:
             bullet_rows.append([
@@ -245,14 +277,14 @@ class NatalChartDocument:
         ]))
         return [
             *page_heading(welcome["title"], self.styles, self.palette, self.panel_width),
-            Paragraph(f"{xml_text(first_name)},", self.styles["welcome_name"]),
-            Spacer(1, 11 * mm),
+            Paragraph(xml_text(welcome["subtitle"]), self.styles["welcome_subtitle"]),
+            Spacer(1, 6 * mm),
             Paragraph(xml_text(welcome["intro"]), self.styles["welcome_body"]),
-            Spacer(1, 14 * mm),
+            Spacer(1, 8 * mm),
             Paragraph(xml_text(welcome["heading"]), self.styles["welcome_heading"]),
-            Spacer(1, 5 * mm),
+            Spacer(1, 3 * mm),
             bullets,
-            Spacer(1, 9 * mm),
+            Spacer(1, 6 * mm),
             Paragraph(xml_text(welcome["closing"]), self.styles["welcome_body"]),
         ]
 
@@ -264,15 +296,49 @@ class NatalChartDocument:
         prepared = prepare_chart(svg_path, self.palette)
         metadata = "  ·  ".join(prepared.metadata)
         chart_width = self.page_size[0] - 70 * mm
-        chart_size = 132 * mm
+        chart_size = 120 * mm
+        frame_path = resolve_artwork(self.theme, chart_config.get("frame_image"))
+        wheel = VectorDrawing(prepared.drawing, chart_width, chart_size)
+        if frame_path:
+            frame_color = self.theme["design_system"]["artwork"]["frame"]["color"]
+            frame_image = self._tinted_png(frame_path, frame_color)
+            wheel = FramedWheel(prepared.drawing, frame_image, 150 * mm, chart_size)
         return [
             *page_heading(chart_config["title"], self.styles, self.palette, self.panel_width),
             Paragraph(xml_text(chart_config["description"]), self.styles["chart_description"]),
             Spacer(1, 7 * mm),
-            VectorDrawing(prepared.drawing, chart_width, chart_size),
+            wheel,
             Spacer(1, 4 * mm),
+            self._chart_big_three_columns(),
+            Spacer(1, 5 * mm),
             Paragraph(xml_text(metadata), self.styles["chart_metadata"]),
         ]
+
+    def _chart_big_three_columns(self) -> Table:
+        columns: list[list[Any]] = []
+        for key, label, symbol in (("sun", "SUN", "☉"), ("moon", "MOON", "☽"),
+                                   ("ascendant", "ASCENDANT", "↑")):
+            point = self.data.subject.get(key) or {}
+            sign_key = str(point.get("sign") or "")
+            sign_name = SIGN_NAMES.get(sign_key, sign_key)
+            zodiac = str(point.get("emoji") or "").replace("\ufe0f", "")
+            columns.append([
+                Paragraph(xml_text(sign_name.upper()), self.styles["chart_sign_name"]),
+                Paragraph(xml_text(zodiac), self.styles["chart_sign_symbol"]),
+                Paragraph(f"<font name='{self.symbol_font}'>{symbol}</font> &nbsp; {label}",
+                          self.styles["chart_point_label"]),
+            ])
+        table = Table([columns], colWidths=[self.panel_width / 3] * 3, hAlign="CENTER")
+        table.setStyle(TableStyle([
+            ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+            ("LINEAFTER", (0, 0), (1, 0), 0.8,
+             color(self.theme["design_system"]["artwork"]["frame"]["color"])),
+            ("LEFTPADDING", (0, 0), (-1, -1), 4 * mm),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 4 * mm),
+            ("TOPPADDING", (0, 0), (-1, -1), 2 * mm),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 2 * mm),
+        ]))
+        return table
 
     def _big_three_story(self) -> list[Any]:
         planet_symbols = {"sun": "☉", "moon": "☽", "ascendant": "●"}
@@ -323,11 +389,10 @@ class NatalChartDocument:
         else:
             cells = [content]
             widths = [panel_width]
-        table = Table([cells], colWidths=widths, hAlign="CENTER")
+        table = PanelTable([cells], colWidths=widths, hAlign="CENTER")
         padding = 4 * mm if not compact else 3 * mm
         table.setStyle(TableStyle([
-            ("BACKGROUND", (0, 0), (-1, -1), translucent_color(self.palette["panel_surface"], 0.52)),
-            ("LINEBEFORE", (0, 0), (0, -1), 1.1, color(self.palette["gold"])),
+            *panel_box_style(self.palette),
             ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
             ("LEFTPADDING", (0, 0), (-1, -1), padding), ("RIGHTPADDING", (0, 0), (-1, -1), padding),
             ("TOPPADDING", (0, 0), (-1, -1), padding), ("BOTTOMPADDING", (0, 0), (-1, -1), padding),
@@ -512,13 +577,13 @@ class NatalChartDocument:
         story.append(stack)
         return story
 
-    def _aggregate_panel(self, content: list[Any], width: float) -> Table:
-        table = Table([[content]], colWidths=[width], hAlign="CENTER")
+    def _aggregate_panel(self, content: list[Any], width: float, height: float | None = None) -> Table:
+        table = PanelTable([[content]], colWidths=[width], rowHeights=[height], hAlign="CENTER", cornerRadii=[5, 5, 5, 5])
         table.setStyle(TableStyle([
-            ("BACKGROUND", (0, 0), (-1, -1), translucent_color(self.palette["panel_surface"], 0.52)),
-            ("LINEBEFORE", (0, 0), (0, -1), 1.1, color(self.palette["gold"])),
-            ("LEFTPADDING", (0, 0), (-1, -1), 3.3 * mm), ("RIGHTPADDING", (0, 0), (-1, -1), 3.3 * mm),
-            ("TOPPADDING", (0, 0), (-1, -1), 3 * mm), ("BOTTOMPADDING", (0, 0), (-1, -1), 3 * mm),
+            *panel_box_style(self.palette),
+            ("VALIGN", (0, 0), (-1, -1), "TOP"),
+            ("LEFTPADDING", (0, 0), (-1, -1), 4.5 * mm), ("RIGHTPADDING", (0, 0), (-1, -1), 4.5 * mm),
+            ("TOPPADDING", (0, 0), (-1, -1), 4 * mm), ("BOTTOMPADDING", (0, 0), (-1, -1), 4 * mm),
         ]))
         return table
 
@@ -531,30 +596,19 @@ class NatalChartDocument:
     ) -> Table:
         """Render equal-size balance panels without nested-table width drift."""
         column_width = (full_width - gap) / 2
-        columns = Table(
-            [[element_content, "", modality_content]],
-            colWidths=[column_width, gap, column_width],
-            hAlign="CENTER",
-        )
-        panel_background = translucent_color(self.palette["panel_surface"], 0.52)
+        panels = [self._aggregate_panel(content, column_width)
+                  for content in (element_content, modality_content)]
+        height = max(panel.wrap(column_width, self.page_size[1])[1] for panel in panels)
+        panels = [self._aggregate_panel(content, column_width, height)
+                  for content in (element_content, modality_content)]
+        columns = Table([[panels[0], "", panels[1]]],
+                        colWidths=[column_width, gap, column_width], hAlign="CENTER")
         columns.setStyle(TableStyle([
-            ("BACKGROUND", (0, 0), (0, 0), panel_background),
-            ("BACKGROUND", (2, 0), (2, 0), panel_background),
-            ("LINEBEFORE", (0, 0), (0, 0), 1.1, color(self.palette["gold"])),
-            ("LINEBEFORE", (2, 0), (2, 0), 1.1, color(self.palette["gold"])),
             ("VALIGN", (0, 0), (-1, -1), "TOP"),
-            ("LEFTPADDING", (0, 0), (0, 0), 3.3 * mm),
-            ("RIGHTPADDING", (0, 0), (0, 0), 3.3 * mm),
-            ("TOPPADDING", (0, 0), (0, 0), 3 * mm),
-            ("BOTTOMPADDING", (0, 0), (0, 0), 3 * mm),
-            ("LEFTPADDING", (2, 0), (2, 0), 3.3 * mm),
-            ("RIGHTPADDING", (2, 0), (2, 0), 3.3 * mm),
-            ("TOPPADDING", (2, 0), (2, 0), 3 * mm),
-            ("BOTTOMPADDING", (2, 0), (2, 0), 3 * mm),
-            ("LEFTPADDING", (1, 0), (1, 0), 0),
-            ("RIGHTPADDING", (1, 0), (1, 0), 0),
-            ("TOPPADDING", (1, 0), (1, 0), 0),
-            ("BOTTOMPADDING", (1, 0), (1, 0), 0),
+            ("LEFTPADDING", (0, 0), (-1, -1), 0),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 0),
+            ("TOPPADDING", (0, 0), (-1, -1), 0),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 0),
         ]))
         return columns
 
@@ -585,22 +639,24 @@ class NatalChartDocument:
         full_width = self.panel_width
         column_gap = 5 * mm
         column_width = (full_width - column_gap) / 2
-        bar_width = column_width - 6.6 * mm
+        bar_width = column_width - 9 * mm
 
         dominant_name = str(dominant.get("name") or "")
         planet_symbol = PLANET_SYMBOLS.get(dominant_name, "●")
         dominant_content: list[Any] = [
             Paragraph(xml_text(labels["dominant_planet_title"]), self.styles["aggregate_title"]),
         ]
-        if dominant.get("description"):
-            dominant_content.extend([Spacer(1, 1 * mm), Paragraph(xml_text(dominant["description"]), self.styles["aggregate_description"])])
+        description = xml_text(dominant.get("description") or "")
         if dominant_name:
-            dominant_content.extend([
-                Spacer(1, 2 * mm),
-                Paragraph(f"<font name='{self.symbol_font}' size='22'>{planet_symbol}</font>  {xml_text(dominant_name)}", self.styles["dominant_planet"]),
-            ])
+            heading = (f"<font color='{self.palette['gold_light']}'>"
+                       f"<font name='{self.symbol_font}' size='18'>{planet_symbol}</font> "
+                       f"<font name='Times-Bold' size='13'>{xml_text(dominant_name)}</font></font>")
+            description = f"{heading} &nbsp; {description}"
+        if description:
+            dominant_content.extend([Spacer(1, 2 * mm),
+                                     Paragraph(description, self.styles["dominant_description"])])
         if dominant.get("interpretation"):
-            dominant_content.extend([Spacer(1, 1.5 * mm), Paragraph(xml_text(dominant["interpretation"]), self.styles["aggregate_body"])])
+            dominant_content.extend([Spacer(1, 2.5 * mm), Paragraph(xml_text(dominant["interpretation"]), self.styles["aggregate_body"])])
 
         element_content: list[Any] = [Paragraph(xml_text(labels["element_balance_title"]), self.styles["aggregate_title"])]
         if elements.get("description"):
@@ -630,7 +686,7 @@ class NatalChartDocument:
             hemisphere_content.extend([
                 Paragraph(f"{left_key.title()} ({int(left.get('count') or 0)})  -  {right_key.title()} ({int(right.get('count') or 0)})", self.styles["aggregate_label"]),
                 Spacer(1, 0.7 * mm),
-                PercentageBar(float(left.get("percentage") or 0), full_width - 6.6 * mm, 3.2 * mm, self.palette["primary"], self.palette["gold_light"]),
+                PercentageBar(float(left.get("percentage") or 0), full_width - 9 * mm, 3.2 * mm, self.palette["primary"], self.palette["gold_light"]),
             ])
             if comparison.get("interpretation"):
                 hemisphere_content.extend([Spacer(1, 1 * mm), Paragraph(xml_text(comparison["interpretation"]), self.styles["aggregate_body"])])
@@ -639,7 +695,7 @@ class NatalChartDocument:
         columns = self._aggregate_balance_columns(element_content, modality_content, full_width, column_gap)
         return [
             *page_heading(labels["title"], self.styles, self.palette, self.panel_width),
-            self._aggregate_panel(dominant_content, full_width),
+            self._corner_panel(self._aggregate_panel(dominant_content, full_width), 22 * mm),
             Spacer(1, 4 * mm),
             columns,
             Spacer(1, 4 * mm),
@@ -689,11 +745,18 @@ class NatalChartDocument:
         heading = "Finding Balance"
         if sign:
             heading += f" · {xml_text(sign)} <font name='{self.symbol_font}'>{symbols.get(sign, '')}</font>"
-        return [Spacer(1, 6 * mm), self._cream_panel([
+        return [Spacer(1, 6 * mm), self._corner_panel(self._cream_panel([
             Paragraph(heading, self.styles["pattern_balance_heading"]),
             Spacer(1, 2 * mm),
             Paragraph(xml_text(resolution), self.styles["aspect_description"]),
-        ])]
+        ]), 18 * mm)]
+
+    def _corner_panel(self, panel: PanelTable, size: float) -> PanelTable:
+        panel.setStyle(TableStyle([
+            ("CORNERARTWORK", self.palette["corner_artwork"], size),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 9 * mm),
+        ]))
+        return panel
 
     def _pattern_practice(self, pattern: Mapping[str, Any]) -> list[Any]:
         steps = pattern["interpretation"].get("actionSteps") or []
@@ -751,13 +814,14 @@ class NatalChartDocument:
         return Paragraph(text, self.styles["positions_cell"])
 
     def _positions_table(self, rows, fractions) -> Table:
-        table = Table(rows, colWidths=[self.panel_width * fraction for fraction in fractions], repeatRows=1)
-        gold = self.theme["design_system"]["artwork"]["frame"]["color"]
+        table = PanelTable(rows, colWidths=[self.panel_width * fraction for fraction in fractions], repeatRows=1)
         table.setStyle(TableStyle([
             ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
-            ("BACKGROUND", (0, 0), (-1, -1), translucent_color(self.palette["panel_surface"], 0.45)),
-            ("LINEBELOW", (0, 0), (-1, 0), 0.9, color(gold)),
-            ("LINEBELOW", (0, 1), (-1, -1), 0.3, color(gold)),
+            ("BACKGROUND", (0, 0), (-1, -1), translucent_color(self.palette["panel_surface"], 0.30)),
+            ("BORDERWIDTH", 0.9),
+            ("BORDERGRADIENT", self.palette["border_gradient_colors"], self.palette["border_gradient_locations"]),
+            ("GRADIENTROWS",),
+            ("ROUNDEDCORNERS", [5, 5, 5, 5]),
             ("LEFTPADDING", (0, 0), (-1, -1), 5), ("RIGHTPADDING", (0, 0), (-1, -1), 5),
             ("TOPPADDING", (0, 0), (-1, -1), 9), ("BOTTOMPADDING", (0, 0), (-1, -1), 9),
         ]))
@@ -814,6 +878,88 @@ class NatalChartDocument:
                 self._cream_panel(intro), Spacer(1, 8 * mm),
                 self._positions_table(rows, [0.20, 0.24, 0.17, 0.20, 0.19])]
 
+    def _portrait_story(self) -> list[Any]:
+        """Render either fallback text or the structured interpretation DTO."""
+        import json
+
+        def decode(value: Any) -> Any:
+            if isinstance(value, str):
+                try:
+                    return json.loads(value)
+                except (ValueError, TypeError):
+                    return value
+            return value
+
+        def content(value: Any) -> list[Any]:
+            value = decode(value)
+            if isinstance(value, str):
+                paragraphs, question = value.split("\n\n"), None
+            elif isinstance(value, Mapping):
+                paragraphs = value.get("paragraphs") or []
+                if isinstance(paragraphs, str):
+                    paragraphs = [paragraphs]
+                question = value.get("reflectionQuestion")
+            else:
+                return []
+            result: list[Any] = []
+            for text in paragraphs:
+                if isinstance(text, str) and text.strip():
+                    result.append(Paragraph(xml_text(text.strip()), self.styles["portrait_body"]))
+            if isinstance(question, str) and question.strip():
+                result.append(Paragraph(f"<b>Reflection:</b> {xml_text(question.strip())}", self.styles["portrait_reflection"]))
+            return result
+
+        interpretation = decode(self.data.interpretation_text)
+        heading = lambda: page_heading("Your Celestial Portrait", self.styles, self.palette, self.panel_width)
+
+        def separator() -> list[Any]:
+            return [Spacer(1, 5 * mm), self._ornate_separator(self.panel_width, 12 * mm),
+                    Spacer(1, 5 * mm)]
+
+        def boxed(items: list[Any]) -> PanelTable:
+            panel = PanelTable([[items]], colWidths=[self.panel_width], minRowHeights=[45 * mm])
+            panel.setStyle(TableStyle([
+                *panel_box_style(self.palette),
+                ("CORNERARTWORK", self.palette["corner_artwork"], 28 * mm),
+                ("EXTRACORNERARTWORK", self.palette["corner_artwork_bottom_left"], 28 * mm, "bottom_left"),
+                ("LEFTPADDING", (0, 0), (-1, -1), 9 * mm),
+                ("RIGHTPADDING", (0, 0), (-1, -1), 14 * mm),
+                ("TOPPADDING", (0, 0), (-1, -1), 10 * mm),
+                ("BOTTOMPADDING", (0, 0), (-1, -1), 10 * mm),
+                ("VALIGN", (0, 0), (-1, -1), "MIDDLE"),
+            ]))
+            return panel
+
+        if not isinstance(interpretation, Mapping):
+            fallback = content(interpretation)
+            return [*heading(), boxed(fallback)] if fallback else []
+
+        pages: list[list[Any]] = []
+        for keys, trailing_separator in ((
+                (("opening", None), ("coreStrengths", "Core Strengths"),
+                 ("growthOpportunities", "Growth Opportunities")), False),
+                ((("lifePurpose", "Life Purpose"), ("soulDirection", "Soul Direction"),
+                  ("closing", None)), False)):
+            sections: list[list[Any]] = []
+            for key, title in keys:
+                items = content(interpretation.get(key))
+                if items:
+                    sections.append([Paragraph(title, self.styles["portrait_heading"]), *items]
+                                    if title else [boxed(items)])
+            if sections:
+                page = [*heading(), Spacer(1, 3 * mm)]
+                for index, section in enumerate(sections):
+                    page.extend(section)
+                    if index < len(sections) - 1 or trailing_separator:
+                        page.extend(separator())
+                pages.append(page)
+        story: list[Any] = []
+        for index, page in enumerate(pages):
+            if index:
+                story.append(PageBreak())
+            story.extend(page)
+        return story
+
     def _patterns_story(self) -> list[Any]:
         copy = self.theme["patterns_page"]
         story: list[Any] = [
@@ -846,10 +992,11 @@ class NatalChartDocument:
         for index, text in enumerate(copy["paragraphs"]):
             if index:
                 story.extend([Spacer(1, 6 * mm), self._paired_separator(), Spacer(1, 6 * mm)])
-            panel = Table([[Paragraph(xml_text(text), self.styles["aspects_intro_body"])]],
+            panel = PanelTable([[Paragraph(xml_text(text), self.styles["aspects_intro_body"])]],
                           colWidths=[self.panel_width])
             panel.setStyle(TableStyle([
-                ("BACKGROUND", (0, 0), (-1, -1), translucent_color(self.palette["panel_surface"], 0.52)),
+                *panel_box_style(self.palette),
+                ("CORNERARTWORK", self.palette["corner_artwork_bottom_right"], 16 * mm, "bottom_right"),
                 ("LEFTPADDING", (0, 0), (-1, -1), 5 * mm),
                 ("RIGHTPADDING", (0, 0), (-1, -1), 5 * mm),
                 ("TOPPADDING", (0, 0), (-1, -1), 5 * mm),
@@ -887,7 +1034,7 @@ class NatalChartDocument:
         separator.hAlign = "CENTER"
         return [
             Spacer(1, 57 * mm),
-            Paragraph(xml_text(self.theme["document"]["title"]), self.styles["cover_title"]),
+            Paragraph(xml_text(self.theme["document"]["title"].upper()), self.styles["cover_title"]),
             Spacer(1, 2.5 * mm),
             Paragraph(xml_text(self.theme["document"].get("subtitle", "")), self.styles["cover_tagline"]),
             Spacer(1, 4 * mm),
@@ -905,6 +1052,54 @@ class NatalChartDocument:
             PageBreak(),
         ]
 
+    def _ending_story(self) -> list[Any]:
+        copy = self.theme["ending_page"]
+        width = self.page_size[0] - 50 * mm - 2 * self.body_frame_padding
+        story: list[Any] = [*page_heading(copy["title"], self.styles, self.palette, width)]
+        opening = [Paragraph(xml_text(text), self.styles["ending_body"])
+                   for text in copy["opening_paragraphs"]]
+        panel = PanelTable([[opening]], colWidths=[width])
+        panel.setStyle(TableStyle([
+            *panel_box_style(self.palette),
+            ("LEFTPADDING", (0, 0), (-1, -1), 5 * mm),
+            ("RIGHTPADDING", (0, 0), (-1, -1), 5 * mm),
+            ("TOPPADDING", (0, 0), (-1, -1), 5 * mm),
+            ("BOTTOMPADDING", (0, 0), (-1, -1), 3 * mm),
+        ]))
+        story.append(panel)
+
+        def separator() -> None:
+            story.extend([Spacer(1, 3 * mm),
+                          self._ornate_separator(self.page_size[0] - 60 * mm, 12 * mm),
+                          Spacer(1, 3 * mm)])
+
+        separator()
+        story.extend([
+            Paragraph(xml_text(copy["prepared_label"]), self.styles["cover_prepared"]),
+            Spacer(1, 2 * mm),
+            Paragraph(xml_text(self.data.name), self.styles["cover_name"]),
+            Spacer(1, 4 * mm),
+            Paragraph(self._cover_big_three_line(), self.styles["cover_big_three"]),
+        ])
+        separator()
+        story.append(Paragraph(xml_text(copy["disclaimer"]), self.styles["ending_disclaimer"]))
+        separator()
+        story.extend([
+            Paragraph("Venastella", self.styles["ending_brand"]),
+            Spacer(1, 2 * mm),
+            Paragraph(xml_text(copy["brand_description"]), self.styles["ending_brand_body"]),
+        ])
+        try:
+            generated = datetime.fromisoformat(self.data.created_at.replace("Z", "+00:00"))
+            if generated.tzinfo:
+                generated = generated.astimezone(ZoneInfo("Europe/London"))
+        except ValueError:
+            generated = datetime.now(ZoneInfo("Europe/London"))
+        date_label = f"Generated on {generated.day} {generated.strftime('%B %Y')}"
+        story.extend([Spacer(1, 6 * mm),
+                      Paragraph(xml_text(date_label), self.styles["ending_date"])])
+        return story
+
     def build(self) -> None:
         self.output.parent.mkdir(parents=True, exist_ok=True)
         margin = float(self.theme["document"].get("margin_mm", 17)) * mm
@@ -913,6 +1108,7 @@ class NatalChartDocument:
             PageTemplate(id="Cover", frames=Frame(20 * mm, 20 * mm, self.page_size[0] - 40 * mm, self.page_size[1] - 40 * mm, id="cover"), onPage=self._cover_page, autoNextPageTemplate="Welcome"),
             PageTemplate(id="Welcome", frames=Frame(30 * mm, 17 * mm, self.page_size[0] - 60 * mm, self.page_size[1] - 34 * mm, id="welcome"), onPage=self._welcome_page, autoNextPageTemplate="Body"),
             PageTemplate(id="Body", frames=Frame(self.body_frame_inset, self.body_frame_inset, self.page_size[0] - 2 * self.body_frame_inset, self.page_size[1] - 2 * self.body_frame_inset, id="body"), onPage=self._body_page),
+            PageTemplate(id="Ending", frames=Frame(25 * mm, 20 * mm, self.page_size[0] - 50 * mm, self.page_size[1] - 40 * mm, id="ending"), onPage=self._cover_page),
         ])
         story = self._cover_story()
         story.extend(self._welcome_story())
@@ -959,10 +1155,16 @@ class NatalChartDocument:
         if self.data.patterns:
             story.append(PageBreak())
             story.extend(self._patterns_story())
+        portrait = self._portrait_story()
+        if portrait:
+            story.append(PageBreak())
+            story.extend(portrait)
         if self.data.chart.get("planetary_positions"):
             story.append(PageBreak())
             story.extend(self._positions_story())
         if self.data.chart.get("house_cusps"):
             story.append(PageBreak())
             story.extend(self._house_cusps_story())
-        doc.build(story)
+        story.extend([NextPageTemplate("Ending"), PageBreak(), *self._ending_story()])
+        doc.build(story, canvasmaker=lambda *args, **kwargs:
+                  NumberedCanvas(*args, footer_style=self.styles["footer"], **kwargs))

@@ -95,10 +95,10 @@ def _resolve_theme_variables(svg_text: str, palette: Mapping[str, str]) -> str:
         if name in seen:
             return palette["text"]
         value = variables.get(name, palette["text"]).strip()
-        match = re.fullmatch(r"var\((--[\w-]+)\)", value)
+        match = re.fullmatch(r"var\(\s*(--[\w-]+)\s*\)", value)
         return resolve(match.group(1), seen | {name}) if match else value
 
-    return re.sub(r"var\((--[\w-]+)\)", lambda match: resolve(match.group(1)), svg_text)
+    return re.sub(r"var\(\s*(--[\w-]+)\s*\)", lambda match: resolve(match.group(1)), svg_text)
 
 
 def prepare_chart(svg_path: Path, palette: Mapping[str, str]) -> PreparedChart:

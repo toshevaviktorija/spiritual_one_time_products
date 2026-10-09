@@ -8,6 +8,10 @@ from pathlib import Path
 from typing import Any
 
 DEFAULT_THEME: dict[str, Any] = {
+    "border_gradient": {
+        "colors": ["goldDarkest", "surface", "surfaceMauveLighter", "goldDarkest", "surface", "surfaceMauveLighter", "surface", "goldDarkest", "surfaceMauveLighter"],
+        "locations": [0, 0.12, 0.28, 0.38, 0.52, 0.63, 0.76, 0.88, 1],
+    },
     "document": {"page_size": "A4", "margin_mm": 17, "title": "Your Natal Chart", "subtitle": "A Celestial Portrait", "author": "Venastella"},
     "colors_file": "colors.json",
     "design_system_file": "design_system.json",
@@ -15,18 +19,32 @@ DEFAULT_THEME: dict[str, Any] = {
     "house_meanings_file": "ameaning_files/natal_houses.json",
     "colors": {"page_background": "background", "cover_background": "background", "box_background": "surfaceMauve", "alternate_row": "surfaceMauveLighter", "panel_surface": "surfaceLight", "page_title": "goldLightest", "primary": "goldLight", "secondary": "palePurple", "gold": "gold", "gold_light": "goldLight", "gold_pale": "goldPale", "gold_lightest": "goldLightest", "gold_darker": "goldDark", "gold_darkest": "goldDarker", "ornament_gold": "ornamentGold", "text": "goldLightest", "muted_text": "palePurple", "pale_purple": "palePurple", "white": "goldLightest"},
     "welcome": {
-        "title": "Welcome to the Birth Chart",
-        "heading": "What You'll Find Inside",
-        "intro": "This report is your personal cosmic blueprint - a detailed map of the sky at the exact moment you were born. Think of it as a guidebook to understanding yourself on a deeper level.",
+        "title": "WELCOME",
+        "subtitle": "A little map of your inner universe",
+        "intro": "Your natal chart captures the sky at the moment you were born. These pages bring its symbols to life, inviting you to explore the many layers of who you are—from familiar strengths to quieter parts of yourself waiting to be discovered.",
+        "heading": "What awaits within",
         "bullets": [
-            "Your birth chart wheel - a visual map of the planets at your birth",
-            "Planet profiles - what each planet means in your specific signs and houses",
-            "House analysis - the 12 life areas and how they play out for you",
-            "Life themes - your strengths, challenges, and purpose"
+            "Your birth chart wheel — the sky of your first moment, drawn into a circle of planets, signs, and houses.",
+            "Your planets and placements — meet the celestial characters in your chart and explore what their signs and houses reveal about your feelings, relationships, ambitions, and more.",
+            "Your twelve houses — wander through the rooms of your chart, each opening onto a different area of life, from belonging and love to creativity and vocation.",
+            "Your aspects and patterns — discover how your planets connect, weaving together ease, tension, and recurring themes.",
+            "Your celestial portrait— see how the threads come together, illuminating your strengths, opportunities for growth, and sense of direction."
         ],
-        "closing": "Take your time reading through each section. There's no right or wrong way to explore your chart - just follow what resonates with you."
+        "closing": "Settle in and follow your curiosity. Read from beginning to end, or linger wherever something catches your heart. You can return to these pages as your story unfolds, finding fresh meaning along the way."
+    },
+    "ending_page": {
+        "title": "Your story continues",
+        "opening_paragraphs": [
+            "As you turn this final page, imagine slipping your chart into your pocket like a little map beneath a velvet sky. Carry its discoveries gently: the strengths you recognise, the questions that linger, and the parts of yourself you are still learning to love.",
+            "There are chapters yet unwritten, doors yet unopened, and ordinary days holding quiet magic. You get to choose what happens next.",
+            "May you find the courage to follow your curiosity, the kindness to honour your own pace, and a little starlight whenever the path grows dim."
+        ],
+        "prepared_label": "Prepared Exclusively for",
+        "brand_description": "A little sanctuary to rediscover yourself, reclaim your magic, and feel at home in who you are.",
+        "disclaimer": "This report is intended for educational purposes and personal reflection. Astrological interpretations are symbolic and should not replace medical, mental health, legal, or financial advice from qualified professionals."
     },
     "chart_page": {
+        "frame_image": "assets/natal_chart_wheel_frame.png",
         "svg_file": "source_files/chart_render.svg",
         "title": "Birth Chart",
         "description": "This is a map of the sky at the moment you were born. The outer ring shows the 12 zodiac signs. The symbols inside are planets - placed where they actually were. The lines in the center connect planets that influence each other (aspects). The numbered sections are houses - life areas like career, love, and home."
@@ -151,6 +169,17 @@ def load_theme(theme_path: Path | None, project_root: Path) -> dict[str, Any]:
         if not isinstance(value, str) or not value.startswith("#"):
             raise ValueError(f"Color role {role!r} must resolve to a hex color; got {value!r}")
         theme["colors"][role] = value
+
+    gradient = theme["border_gradient"]
+    shades = [palette.get(token, token) for token in gradient["colors"]]
+    locations = gradient["locations"]
+    if (len(shades) != len(locations) or len(shades) < 2
+            or locations[0] != 0 or locations[-1] != 1
+            or any(a >= b for a, b in zip(locations, locations[1:]))
+            or any(not isinstance(shade, str) or not shade.startswith("#") for shade in shades)):
+        raise ValueError("Border gradient requires matching colors and increasing locations from 0 to 1")
+    theme["colors"]["border_gradient_colors"] = shades
+    theme["colors"]["border_gradient_locations"] = locations
 
     keywords_path = _resolve_path(theme["pattern_keywords_file"], config_dir, project_root)
     with keywords_path.open(encoding="utf-8") as stream:

@@ -1,0 +1,5 @@
+{% extends 'studio/base.html' %}{% block title %}Demo Checkout · Venastella{% endblock %}{% block content %}
+<section class="form-page"><p class="eyebrow">LOCAL PAYMENT DEMO</p><h1>Checkout</h1><p class="notice">This is a local simulation. It does not contact Stripe or charge money. Do not enter card details.</p>
+<p>Personalised natal chart · <strong>£39 GBP</strong></p><p>Delivery to {{ birth_request.email }}</p>
+<form method="post">{% csrf_token %}<button class="button" type="submit">Simulate successful payment · £39</button></form>
+<p><a href="{% url 'birth-status' birth_request.pk %}?cancelled=1">Cancel checkout</a></p></section>{% endblock %}
